@@ -14,18 +14,3 @@
         "manifest_name": "KyberV125-manifest.json"
     }
 ]
-
-{
-    "name": "RAD-Controller-OLED-23.06.10",
-    "branch": "23.06.10",
-    "description": "### 2023 June 10",
-    "url": "https://github.com/reeltwo/DomeControlFirmware/releases/download/23.06.10/RAD-Controller-OLED.bin",
-    "zipfile": "https://github.com/reeltwo/DomeControlFirmware/releases/download/23.06.10/RAD-Controller-OLED.zip",
-    "release_details": {
-        "version": "23.06.10",
-        "idf": "v4.3",
-        "platform": "RoamADomeOLED",
-        "branch": "23.06.10"
-    },
-    "manifest_name": "RAD-Controller-OLED-23.06.10-manifest.json"
-},
