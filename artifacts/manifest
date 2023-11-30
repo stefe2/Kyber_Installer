@@ -1,6 +1,6 @@
 [
     {
-        "name": "Kyber-Controleer-V125",
+        "name": "Kyber-Controller-V125",
         "branch": "23.06.10",
         "description": "30 nov 2023",
         "release_details": {
@@ -9,6 +9,6 @@
             "platform": "KyberController",
             "branch": "23.11.30"
         },
-        "manifest_name": "Kyber-Controleer-V125-manifest.json"
+        "manifest_name": "KyberV125-manifest.json"
     }
 ]

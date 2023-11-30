@@ -1,5 +1,5 @@
 {
-    "name": "KynerControllerV125",
+    "name": "KyberControllerV125",
     "version": "23.11.30",
     "new_install_prompt_erase": true,
     "new_install_improv_wait_time": 0,
@@ -14,5 +14,5 @@
             ]
         }
     ],
-    "manifest_name": "Kyber-Controleer-V125-manifest.json"
+    "manifest_name": "KyberV125-manifest.json"
 }
