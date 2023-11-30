@@ -1,0 +1,271 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+      <style>
+        body {
+          text-align: center;
+          font-family: "Trebuchet MS", Arial;
+          background-color: black;
+        }
+        
+        footer {
+          text-align: center;
+          border-radius: 4px;
+          background-color: black;
+        }
+        
+        h2 {
+          text-align: center;
+          background-color: dimgray;
+          box-sizing: border-box;
+          border-radius: 4px;
+          color: white;
+        }
+        
+        h3 {
+          text-align: center;
+          box-sizing: border-box;
+          border-radius: 4px;
+          color: white;
+        }
+        
+        .v2 {
+          border-left: 4px solid steelblue;
+          height: 598px;
+          position: absolute;
+          left: 465;
+          top: 98;
+        }
+        
+        .v3 {
+          border-left: 4px solid steelblue;
+          height: 598px;
+          position: absolute;
+          left: 709;
+          top: 98;
+        }
+        
+        .v4 {
+          border-left: 4px solid steelblue;
+          height: 598px;
+          position: absolute;
+          left: 876;
+          top: 98;
+        }
+        
+        table {
+          border: 4px solid steelblue;
+        }
+  
+        input[type="file"] {
+          display: none;
+        }
+        
+        .custom-file-upload {
+          border: 1px solid white;
+          display: inline-block;
+          padding: 6px 12px;
+          cursor: pointer;
+          background-color: #ccc;
+          border-radius: 4px;
+        }
+        
+        .custom-file-upload:hover {
+          background-color: lightgreen;
+        }
+        
+        input[type=number], select {
+          padding: 4px 4px;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+  
+        input[type=text], select {
+          padding: 4px 4px;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        
+        input[type=submit] {
+          width: 200px;
+          background-color: steelblue;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+  
+        input[type=submit]:hover {
+          background-color: skyblue;
+        }
+  
+        input[type=button] {
+          width: 130px;
+          background-color: steelblue;
+          color: white;
+          padding: 10px 14px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+  
+        input[type=button]:hover {
+          background-color: skyblue;
+        }
+  
+        input[type=button]:active {
+          background-color: darkblue;
+        }
+  
+        .tooltip {
+          position: relative;
+          display: inline-block;
+          border-bottom: 1px dotted black;
+        }
+  
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 300px;
+          background-color: green;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          top: 150%;
+          left: 50%;
+          margin-left: -60px;
+          opacity: 0;
+          transition: opacity 1s;
+        }
+  
+        .tooltip .tooltiptext::after {
+          content: "";
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent transparent green transparent;
+        }
+  
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
+  
+        #myProgress {
+          width: 100%;
+          height: 30px;
+          background-color: red;
+        }
+        
+        #myBar {
+          width: 0%;
+          height: 30px;
+          background-color: #008080;
+          text-align: center;
+          line-height: 30px;
+          color: white;
+          border-radius: 4px;
+        }
+  
+        .myDiv {
+          margin: auto;
+          text-align: center;
+          width: 300px;
+          border-width: 1px;
+          border-style: solid;
+          border-color: white;
+          border-radius: 4px;
+        }
+        #id_confrmdiv{
+          display: none;
+          background-color: #eee;
+          border-radius: 5px;
+          border: 1px solid #aaa;
+          position: fixed;
+          width: 300px;
+          left: 50%;
+          margin-left: -150px;
+          padding: 6px 8px 8px;
+          box-sizing: border-box;
+          text-align: center;
+        }
+  
+        #id_confrmdiv button {
+          background-color: #ccc;
+          display: inline-block;
+          border-radius: 3px;
+          border: 1px solid #aaa;
+          padding: 2px;
+          text-align: center;
+          width: 80px;
+          cursor: pointer;
+        }
+  
+        #id_confrmdiv .button:hover{
+          background-color: #ddd;
+        }
+  
+        #confirmBox .message{
+          text-align: left;
+          margin-bottom: 8px;
+        }
+      </style>
+      <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta http-equiv="x-ua-compatible" content="ie=edge"/>
+      <title>Kyber Installer</title>
+      <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
+      <script defer="defer" src="js/main.js"></script>
+      <link href="css/main.css" rel="stylesheet">
+    </head>
+    <body>
+      <div class="container" style="height: 100%;">
+        <div class="jumbotron" style="width: 100%; height: 75%">
+          <h1 class="display-3">Kyber Controller Installer</h1>
+          <p class="lead">Web Installer for Kyber Controller Firmware on ESP32 Devices.</p>
+          <hr class="my-4"/>
+          <p>Plug the device to your computer using a usb cable or, as needed, a USB to serial adapter, select the hardware platform that matches your device, the version you wish to use and click on the connect button.</p>
+        </div>
+        <div class="mb-3"><esp-web-install-button id="button_web_install" manifest="manifest.json">
+          <button type="button" class="btn btn-primary" slot="activate">Connect to device</button>
+          <span slot="not-allowed"><div class="alert alert-dismissible alert-danger">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Not Allowed</strong>
+            <div>Flashing is only supported from the local host or from a secure web site.</div>
+        </div>
+        </span><span slot="notsupported"><div class="alert alert-dismissible alert-danger">
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          <strong>Browser Not Supported</strong>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API#browser_compatibility">Make sure you are using a compatible browser</a></div></span></esp-web-install-button></div>
+        <div id="device_tiles">
+        <div class="d-flex flex-row">
+        <div class="card bg-secondary mb-3" style="max-width: 20rem;" role="button">
+        <div class="card-header bg-primary" id="cardKyberV125_header" role="button">
+          <input id="cardKyberV125" type="radio" checked="checked"/>
+          <label for="cardKyberV125">Kyber Controller V 1.2.5</label>
+        </div>
+        <div class="card-body">
+          <img src="images/Kyber_Controller_Logo.jpg" width="100%"/></div>
+        </div>
+        </div>Boards are available <a href="https://www.facebook.com/groups/1341505756182087">here</a>
+        <div style="height: 75%;">
+          <div class="panel panel-default">
+            <div class="panel-footer mt-4">
+              <a href="https://www.facebook.com/groups/1341505756182087">Kyber Controller FB Page</a>
+              &mdash; 
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
