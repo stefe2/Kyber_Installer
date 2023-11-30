@@ -1,0 +1,18 @@
+{
+    "name": "KynerControllerV125",
+    "version": "23.11.30",
+    "new_install_prompt_erase": true,
+    "new_install_improv_wait_time": 0,
+    "builds": [
+        {
+            "chipFamily": "ESP32",
+            "parts": [
+                {
+                    "path": "Kyber_V125.bin",
+                    "offset": 0
+                }
+            ]
+        }
+    ],
+    "manifest_name": "Kyber-Controleer-V125-manifest.json"
+}

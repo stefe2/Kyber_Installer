@@ -1,0 +1,58 @@
+[
+    {
+        "name": "RAD-Controller-OLED-23.06.10",
+        "branch": "23.06.10",
+        "description": "### 2023 June 10",
+        "url": "https://github.com/reeltwo/DomeControlFirmware/releases/download/23.06.10/RAD-Controller-OLED.bin",
+        "zipfile": "https://github.com/reeltwo/DomeControlFirmware/releases/download/23.06.10/RAD-Controller-OLED.zip",
+        "release_details": {
+            "version": "23.06.10",
+            "idf": "v4.3",
+            "platform": "RoamADomeOLED",
+            "branch": "23.06.10"
+        },
+        "manifest_name": "RAD-Controller-OLED-23.06.10-manifest.json"
+    },
+    {
+        "name": "RAD-Controller-Compact-23.06.10",
+        "branch": "23.06.10",
+        "description": "### 2023 June 10",
+        "url": "https://github.com/reeltwo/DomeControlFirmware/releases/download/23.06.10/RAD-Controller-Compact.bin",
+        "zipfile": "https://github.com/reeltwo/DomeControlFirmware/releases/download/23.06.10/RAD-Controller-Compact.zip",
+        "release_details": {
+            "version": "23.06.10",
+            "idf": "v4.3",
+            "platform": "RoamADomeCompact",
+            "branch": "23.06.10"
+        },
+        "manifest_name": "RAD-Controller-Compact-23.06.10-manifest.json"
+    },
+    {
+        "name": "RAD-SensorRing-23.05.20",
+        "branch": "23.05.20",
+        "description": "### 2023 May 20",
+        "url": "https://github.com/reeltwo/DomeSensorFirmware32/releases/download/23.05.20/RAD-SensorRing.bin",
+        "zipfile": "https://github.com/reeltwo/DomeSensorFirmware32/releases/download/23.05.20/RAD-SensorRing.zip",
+        "release_details": {
+            "version": "23.05.20",
+            "idf": "v4.3",
+            "platform": "RoamADomeSensor",
+            "branch": "23.05.20"
+        },
+        "manifest_name": "RAD-SensorRing-23.05.20-manifest.json"
+    },
+    {
+        "name": "RAD-Blank-23.05.20",
+        "branch": "23.05.20",
+        "description": "### 2023 May 20",
+        "url": "https://github.com/reeltwo/DomeSensorFirmware32/releases/download/23.05.20/RAD-SensorRing.bin",
+        "zipfile": "https://github.com/reeltwo/DomeSensorFirmware32/releases/download/23.05.20/RAD-SensorRing.zip",
+        "release_details": {
+            "version": "23.05.20",
+            "idf": "v4.3",
+            "platform": "RoamADomeBlank",
+            "branch": "23.05.20"
+        },
+        "manifest_name": "RAD-Blank-23.05.20-manifest.json"
+    }
+]
