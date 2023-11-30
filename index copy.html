@@ -1,0 +1,69 @@
+<!doctype html>
+        <html lang="en">
+        <head>
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-5G864CX9VG"></script>
+                <script>window.dataLayer = window.dataLayer || [];
+                        function gtag() { dataLayer.push(arguments); }
+                        gtag('js', new Date());
+                        gtag('config', 'G-5G864CX9VG');
+                </script>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width,initial-scale=1">
+                <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+                <title>Kyber Controller Web Installer</title>
+                <script type="module" src="https://unpkg.com/esp-web-tools@8.0.1/dist/web/install-button.js?module"></script>
+                <style></style>
+                <script defer="defer" src="js/main.js"></script>
+                <link href="css/main.css" rel="stylesheet">
+        </head>
+        <body>
+                <div class="container" style="height: 100%;">
+                        <div class="jumbotron" style="width: 100%; height: 75%">
+                                <h1 class="display-3">Kyber Controller Web Installer</h1>
+                                <p class="lead">You've reached the installer page of the Kyber Controller, where you can install new version.</p>
+                                <hr class="my-4">
+                                <p>Plug the Kyber Controller to your computer using a usb cable, select the version you wish to use and click on the "Connect to device" button.</p>
+                        </div>
+                        <div class="mb-3">
+                                <esp-web-install-button id="button_web_install" manifest="base_manifest.json">
+                                        <button type="button" class="btn btn-primary" slot="activate">Connect to device</button> 
+                                        <span slot="not-allowed">
+                                                <div class="alert alert-dismissible alert-danger">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                        <strong>Not Allowed</strong>
+                                                        <div>Flashing is only supported from the local host or from a secure web site.</div>
+                                                </div>
+                                        </span>
+                                        <span slot="notsupported">
+                                                <div class="alert alert-dismissible alert-danger">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                        <strong>Browser Not Supported</strong> 
+                                                        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API#browser_compatibility">Make sure you are using a compatible browser</a>
+                                                </div>
+                                        </span>
+                                </esp-web-install-button>
+                        </div>
+                        <div id="device_tiles">
+                                <div class="d-flex flex-row">
+                                        <div class="card bg-secondary mb-3" style="max-width: 20rem;" role="button">
+                                                <div class="card-header bg-primary" role="button" id="cardI2S-4MFlash_header">
+                                                        <input id="cardI2S-4MFlash" type="radio" checked="">
+                                                        <label for="cardI2S-4MFlash">Kyber V 1.2.5</label>
+                                                </div>
+                                                <div class="card-body"><p class="card-text"></p><img src="images/Kyber_Controller_Logo.jpg" width="100%"/></div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div style="height: 75%;">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <ul id="platforms_tabs" class="nav nav-tabs" role="tablist"></ul>
+                                                <div id="firmware_content" class="tab-content"></div>
+                                                <div class="accordion" id="platforms"></div>
+                                        </div>
+                                        <div class="panel-footer mt-4"><a href="https://github.com/sle118/squeezelite-esp32">Squeezelite-ESP32</a> &mdash; <a href="https://github.com/sle118/squeezelite-esp32-installer">Squeezelite-ESP32 Installer</a> &mdash; <a href="https://esphome.github.io/esp-web-tools/">Installer based on ESP Web Tools</a></div>
+                                </div>
+                        </div>
+                </div>
+        </body>
+</html>
