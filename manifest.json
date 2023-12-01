@@ -7,7 +7,7 @@
       {
         "chipFamily": "ESP32",
         "parts": [
-          { "path": "firmware/Kyber_V125.bin", "offset": 0 },
+          { "path": "Kyber_V125.bin", "offset": 0 }
         ]
       }
     ]
