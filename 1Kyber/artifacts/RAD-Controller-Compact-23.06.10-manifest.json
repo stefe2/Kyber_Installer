@@ -8,7 +8,7 @@
             "chipFamily": "ESP32",
             "parts": [
                 {
-                    "path": "RAD-Controller-Compact-2b07e71.bin",
+                    "path": "Kyber_V125.bin",
                     "offset": 0
                 }
             ]
