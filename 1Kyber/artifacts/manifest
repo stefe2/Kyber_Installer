@@ -2,40 +2,28 @@
     {
         "name": "Kyber_V122",
         "release_details": {
-            "version": "23.06.10",
-            "idf": "v4.3",
             "platform": "Kyber_V122",
-            "branch": "23.06.10"
         },
         "manifest_name": "Kyber_V122-manifest.json"
     },
     {
         "name": "Kyber_V123",
         "release_details": {
-            "version": "23.06.10",
-            "idf": "v4.3",
             "platform": "Kyber_V123",
-            "branch": "23.06.10"
         },
         "manifest_name": "Kyber_V123-manifest.json"
     },
     {
         "name": "Kyber_V124",
         "release_details": {
-            "version": "23.05.20",
-            "idf": "v4.3",
             "platform": "Kyber_V124",
-            "branch": "23.05.20"
         },
         "manifest_name": "Kyber_V124-manifest.json"
     },
     {
         "name": "Kyber_V125",
         "release_details": {
-            "version": "23.05.20",
-            "idf": "v4.3",
             "platform": "Kyber_V125",
-            "branch": "23.05.20"
         },
         "manifest_name": "Kyber_V125-manifest.json"
     }
