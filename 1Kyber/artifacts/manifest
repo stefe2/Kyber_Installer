@@ -1,42 +1,42 @@
 [
     {
-        "name": "RAD-Controller-OLED-23.06.10",
+        "name": "Kyber_V122",
         "release_details": {
             "version": "23.06.10",
             "idf": "v4.3",
-            "platform": "RoamADomeOLED",
+            "platform": "Kyber_V122",
             "branch": "23.06.10"
         },
-        "manifest_name": "RAD-Controller-OLED-23.06.10-manifest.json"
+        "manifest_name": "Kyber_V122-manifest.json"
     },
     {
-        "name": "RAD-Controller-Compact-23.06.10",
+        "name": "Kyber_V123",
         "release_details": {
             "version": "23.06.10",
             "idf": "v4.3",
-            "platform": "RoamADomeCompact",
+            "platform": "Kyber_V123",
             "branch": "23.06.10"
         },
-        "manifest_name": "RAD-Controller-Compact-23.06.10-manifest.json"
+        "manifest_name": "Kyber_V123-manifest.json"
     },
     {
-        "name": "RAD-SensorRing-23.05.20",
+        "name": "Kyber_V124",
         "release_details": {
             "version": "23.05.20",
             "idf": "v4.3",
-            "platform": "RoamADomeSensor",
+            "platform": "Kyber_V124",
             "branch": "23.05.20"
         },
-        "manifest_name": "RAD-SensorRing-23.05.20-manifest.json"
+        "manifest_name": "Kyber_V124-manifest.json"
     },
     {
-        "name": "RAD-Blank-23.05.20",
+        "name": "Kyber_V125",
         "release_details": {
             "version": "23.05.20",
             "idf": "v4.3",
-            "platform": "RoamADomeBlank",
+            "platform": "Kyber_V125",
             "branch": "23.05.20"
         },
-        "manifest_name": "RAD-Blank-23.05.20-manifest.json"
+        "manifest_name": "Kyber_V125-manifest.json"
     }
 ]
