@@ -1,13 +1,13 @@
 {
     "name": "PipBoy_Edition", 
-    "version": "2024.05.20",
+    "version": "2024.05.23",
     "new_install_prompt_erase": true,
     "new_install_improv_wait_time": 0,
     "builds": [
       {
         "chipFamily": "ESP32",
         "parts": [
-          { "path": "PIPV2.bin", "offset": 0 }
+          { "path": "PIPV2CYD.bin", "offset": 0 }
         ]
       }
     ]
