@@ -1,13 +1,13 @@
 {
-    "name": "Kyber_V125 ", 
-    "version": "2023.11.30",
+    "name": "Kyber_V127 ", 
+    "version": "2025.04.15",
     "new_install_prompt_erase": true,
     "new_install_improv_wait_time": 0,
     "builds": [
       {
         "chipFamily": "ESP32",
         "parts": [
-          { "path": "Kyber_V125.bin", "offset": 0 }
+          { "path": "Kyber_V127.bin", "offset": 0 }
         ]
       }
     ]
