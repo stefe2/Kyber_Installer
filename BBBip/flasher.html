@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB-8 SoundBoard - Firmware Flasher</title>
+    <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            color: #00d9ff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+        
+        .header p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            background: rgba(22, 33, 62, 0.8);
+            border: 1px solid rgba(15, 52, 96, 0.6);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card h2 {
+            color: #00d9ff;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid rgba(0, 217, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning strong {
+            color: #ffc107;
+        }
+        
+        .step {
+            background: rgba(0, 217, 255, 0.05);
+            border-left: 3px solid #00d9ff;
+            padding: 12px 20px;
+            margin: 10px 0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .flash-button-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(0, 217, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        esp-web-install-button {
+            --esp-tools-button-color: #00d9ff;
+            --esp-tools-button-text-color: #000;
+        }
+        
+        esp-web-install-button button {
+            background: #00d9ff !important;
+            color: #000 !important;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.4);
+        }
+        
+        esp-web-install-button button:hover {
+            background: #00b8d9 !important;
+            box-shadow: 0 6px 30px rgba(0, 217, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-item {
+            background: rgba(0, 217, 255, 0.05);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        
+        .info-item strong {
+            color: #00d9ff;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        ul li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        a {
+            color: #00d9ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #00b8d9;
+            text-decoration: underline;
+        }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background: rgba(0, 217, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .success strong {
+            color: #22c55e;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 BB-8 SoundBoard</h1>
+            <p>Firmware Flasher - Web Serial Edition</p>
+        </div>
+
+        <div class="card">
+            <h2>📱 Flash Firmware</h2>
+            <p>Update or restore your BB-8 SoundBoard firmware directly from your browser using Web Serial.</p>
+            
+            <div class="warning">
+                ⚠️ <strong>Important:</strong> This method preserves your WiFi credentials, RC configuration, and audio settings stored in NVS (Non-Volatile Storage).
+            </div>
+
+            <div class="success">
+                ✅ <strong>Safe Mode:</strong> Flashing at offset 0x10000 ensures your configuration remains intact. Only the application firmware is updated.
+            </div>
+
+            <h3 style="color: #00d9ff; margin-top: 30px; margin-bottom: 15px;">📋 Step-by-Step Instructions</h3>
+            <div class="step">1️⃣ Connect your ESP32-S3 board to your computer via USB cable</div>
+            <div class="step">2️⃣ Click the blue "Connect & Flash Firmware" button below</div>
+            <div class="step">3️⃣ Select the correct COM/Serial port from the popup window</div>
+            <div class="step">4️⃣ Click "Install BB-8 SoundBoard" and wait for completion (~30-60 seconds)</div>
+            <div class="step">5️⃣ Disconnect and reconnect the USB cable to reboot the device</div>
+
+            <div class="flash-button-container">
+                <esp-web-install-button manifest="./manifest.json">
+                    <button slot="activate">🚀 Connect & Flash Firmware</button>
+                </esp-web-install-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📖 Firmware Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Version</strong>
+                    1.2.0
+                </div>
+                <div class="info-item">
+                    <strong>Build Date</strong>
+                    2025-12-14
+                </div>
+                <div class="info-item">
+                    <strong>Chip</strong>
+                    ESP32-S3
+                </div>
+                <div class="info-item">
+                    <strong>Flash Offset</strong>
+                    0x10000 (65536)
+                </div>
+            </div>
+
+            <h3 style="color: #00d9ff; margin-top: 25px; margin-bottom: 15px;">✨ Features Included</h3>
+            <ul>
+                <li>🎵 High-quality audio playback with I2S DAC</li>
+                <li>🎮 RC control via SBUS protocol (speed, volume, 3 sound effects)</li>
+                <li>💾 SD card management (upload, delete, rename, convert MP3→WAV)</li>
+                <li>🌐 Modern web interface (WiFi configuration, system info, live monitoring)</li>
+                <li>👁️ NeoPixel eye animation with customizable colors</li>
+                <li>📊 LCD display with real-time status (ST7789)</li>
+                <li>🔧 System actions (reboot, factory reset)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🔧 Troubleshooting</h2>
+            
+            <h3 style="color: #00d9ff; margin-bottom: 15px;">Connection Issues</h3>
+            <ul>
+                <li><strong>Port not appearing:</strong> Install CP210x or CH340 USB drivers for your OS</li>
+                <li><strong>Permission denied:</strong> Close Arduino IDE, PlatformIO Monitor, or other serial applications</li>
+                <li><strong>Flash failed:</strong> Hold the BOOT button while connecting USB, then release after connection</li>
+            </ul>
+
+            <h3 style="color: #00d9ff; margin-top: 25px; margin-bottom: 15px;">After Flashing</h3>
+            <ul>
+                <li><strong>Device not booting:</strong> Disconnect USB, wait 5 seconds, reconnect</li>
+                <li><strong>Web interface not accessible:</strong> Check WiFi credentials in NVS or perform Factory Reset</li>
+                <li><strong>No audio:</strong> Verify SD card is inserted with WAV files (22050Hz or 44100Hz, 16-bit, mono/stereo)</li>
+            </ul>
+
+            <h3 style="color: #00d9ff; margin-top: 25px; margin-bottom: 15px;">Browser Compatibility</h3>
+            <ul>
+                <li>✅ <strong>Chrome/Edge:</strong> Fully supported (recommended)</li>
+                <li>✅ <strong>Opera:</strong> Fully supported</li>
+                <li>⚠️ <strong>Firefox:</strong> Web Serial API not available (use Chrome)</li>
+                <li>⚠️ <strong>Safari:</strong> Web Serial API not available (use Chrome)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🔗 Resources</h2>
+            <ul>
+                <li><a href="https://github.com/YourUsername/BB8_SoundBoard" target="_blank">📂 GitHub Repository</a></li>
+                <li><a href="https://github.com/YourUsername/BB8_SoundBoard/releases" target="_blank">📦 All Firmware Releases</a></li>
+                <li><a href="https://github.com/YourUsername/BB8_SoundBoard/wiki" target="_blank">📚 Documentation & Wiki</a></li>
+                <li><a href="https://github.com/YourUsername/BB8_SoundBoard/issues" target="_blank">🐛 Report Issues</a></li>
+            </ul>
+
+            <a href="https://github.com/YourUsername/BB8_SoundBoard" class="github-link" target="_blank">
+                🌟 Star on GitHub
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; color: #777; font-size: 0.9rem;">
+            <p>Made with ❤️ for BB-8 builders | Powered by ESP Web Tools</p>
+            <p style="margin-top: 10px;">© 2025 BB-8 SoundBoard Project</p>
+        </div>
+    </div>
+</body>
+</html>
