@@ -1,0 +1,8 @@
+# Commande rapide pour fusionner manuellement (copier/coller dans PowerShell)
+
+# Naviguez d'abord vers votre dossier de build PlatformIO, puis:
+
+esptool.py --chip esp32 merge_bin -o firmware_merged.bin --flash_mode dio --flash_freq 40m --flash_size 4MB 0x0 bootloader.bin 0x8000 partitions.bin 0xE000 boot_app0.bin 0x10000 firmware.bin
+
+# Ensuite copiez le fichier vers votre répertoire firmware:
+# Copy-Item firmware_merged.bin "C:\path\to\Kyber_Installer\firmware\Kyber_V127.bin"
