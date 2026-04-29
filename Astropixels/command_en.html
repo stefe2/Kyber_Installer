@@ -164,6 +164,7 @@
         <h2>Wiring</h2>
         <div class="wiring-section">
             <h3>ESP32 GPIO Pin Assignment</h3>
+            <img src="AstropixelsPlus.png" alt="AstroPixelsPlus wiring diagram" style="max-width:100%; border-radius:6px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
             
             <p><strong>Serial Communication</strong></p>
             <ul>
@@ -679,8 +680,14 @@
                 <tr><td>16</td><td>Top Holo V</td><td>HOLO_VSERVO</td></tr>
                 <tr><td>17</td><td>Rear Holo H</td><td>HOLO_HSERVO</td></tr>
                 <tr><td>18</td><td>Rear Holo V</td><td>HOLO_VSERVO</td></tr>
+                <tr><td>19–23</td><td>— unused —</td><td>—</td></tr>
             </tbody>
         </table>
+        <ul>
+            <li><strong>Channels 0–12 (panels):</strong> Speed=80, Acceleration=5 recommended</li>
+            <li><strong>Channels 13–18 (holo servos):</strong> Speed=0 (unlimited) for brisk movement</li>
+            <li><strong>Channels 19–23:</strong> free / unused</li>
+        </ul>
 
         <div class="footer">
             <p><em>Project: AstroPixelsPlus - ESP32 + Pololu Maestro 24 channels</em></p>
