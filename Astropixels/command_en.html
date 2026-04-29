@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroPixelsPlus Commands</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+            font-size: 0.95em;
+        }
+        
+        blockquote {
+            background: #ecf0f1;
+            border-left: 4px solid #95a5a6;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        blockquote strong {
+            color: #2c3e50;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            color: #856404;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #ecf0f1;
+            margin: 40px 0;
+        }
+        
+        .wiring-section {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AstroPixelsPlus Commands</h1>
+
+        <h2>Wiring</h2>
+        <div class="wiring-section">
+            <h3>ESP32 GPIO Pin Assignment</h3>
+            
+            <p><strong>Serial Communication</strong></p>
+            <ul>
+                <li><strong>Serial2 (Marcduino):</strong> GPIO 16 (RX) / GPIO 17 (TX) @ 9600 baud</li>
+                <li><strong>Serial1 (Pololu Maestro):</strong> GPIO 18 (RX) / GPIO 19 (TX) @ 115200 baud</li>
+            </ul>
+            
+            <p><strong>I2C Bus</strong></p>
+            <ul>
+                <li><strong>SDA:</strong> GPIO 21</li>
+                <li><strong>SCL:</strong> GPIO 22</li>
+            </ul>
+            
+            <p><strong>LEDs / NeoPixels</strong></p>
+            <ul>
+                <li><strong>Front Logic:</strong> GPIO 15</li>
+                <li><strong>Rear Logic:</strong> GPIO 33</li>
+                <li><strong>Front PSI:</strong> GPIO 32</li>
+                <li><strong>Rear PSI:</strong> GPIO 23</li>
+                <li><strong>Front Holo:</strong> GPIO 25</li>
+                <li><strong>Rear Holo:</strong> GPIO 26</li>
+                <li><strong>Top Holo:</strong> GPIO 27</li>
+                <li><strong>Builtin LED</strong> (heartbeat): GPIO 2</li>
+            </ul>
+            
+            <p><strong>Auxiliary Pins</strong></p>
+            <ul>
+                <li><strong>AUX1:</strong> GPIO 2</li>
+                <li><strong>AUX2:</strong> GPIO 4</li>
+                <li><strong>AUX3:</strong> GPIO 5</li>
+                <li><strong>AUX4:</strong> GPIO 18 (used by Maestro RX)</li>
+                <li><strong>AUX5:</strong> GPIO 19 (used by Maestro TX)</li>
+            </ul>
+            
+            <div class="note">
+                <strong>Note:</strong> Serial1 was previously used for a sound module but has been reassigned to the Pololu Maestro controller for servo control.
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Panels (Serial2 / USB, prefix <code>:</code>)</h2>
+
+        <h3>Global Commands</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:CL00</code></td><td>Close all panels (brownout risk if common power supply)</td></tr>
+                <tr><td><code>:OP00</code></td><td>Open all panels</td></tr>
+                <tr><td><code>:OF00</code></td><td>Flutter (shake) all panels</td></tr>
+                <tr><td><code>:ST00</code></td><td>Stop & disable ALL servos (limp, no torque)</td></tr>
+                <tr><td><code>:SD&lt;n&gt;</code></td><td>Disable ONE servo (ex: <code>:SD0</code>, <code>:SD4</code>, <code>:SD12</code>)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Direct Movement</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:SM&lt;ch&gt;,&lt;dur&gt;,&lt;pos&gt;</code></td><td>Direct movement (ex: <code>:SM0,500,1500</code> = channel 0, 500ms, 1500µs)</td></tr>
+                <tr><td><code>:SF&lt;ch&gt;$&lt;easing&gt;</code></td><td>Set servo easing method</td></tr>
+                <tr><td><code>:SQ&lt;ch&gt;,&lt;pos&gt;</code></td><td>Immediate position without animation</td></tr>
+                <tr><td><code>:SL&lt;ch&gt;,&lt;min&gt;,&lt;max&gt;</code></td><td>Set servo min/max limits</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Individual Groups (01 to 18 + 19/20)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Open</th>
+                    <th>Close</th>
+                    <th>Flutter</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:OP01</code>…<code>:OP18</code></td><td><code>:CL01</code>…<code>:CL18</code></td><td><code>:OF01</code>…<code>:OF10</code></td><td>Groups 1 to 18</td></tr>
+                <tr><td><code>:OP19</code></td><td><code>:CL19</code></td><td>—</td><td>Top panels (pie panels)</td></tr>
+                <tr><td><code>:OP20</code></td><td><code>:CL20</code></td><td>—</td><td>Bottom panels (dome panels)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Dynamic Group Animations</h3>
+        <blockquote>Replace <code>$</code> with the group number in hexadecimal (ex: <code>1</code>, <code>2</code>, <code>FF</code>…)</blockquote>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:OC$</code></td><td>Open/Close group</td></tr>
+                <tr><td><code>:OCL$</code></td><td>Open/Close long</td></tr>
+                <tr><td><code>:OCR$</code></td><td>Open/Close repeated</td></tr>
+                <tr><td><code>:OF$</code></td><td>Flutter group</td></tr>
+                <tr><td><code>:OW$</code></td><td>Wave group</td></tr>
+                <tr><td><code>:OWF$</code></td><td>Fast wave group</td></tr>
+                <tr><td><code>:OWC$</code></td><td>Open/Close wave</td></tr>
+                <tr><td><code>:OMA$</code></td><td>Marching ants</td></tr>
+                <tr><td><code>:OAP$</code></td><td>Alternating</td></tr>
+                <tr><td><code>:OD$</code></td><td>Dance</td></tr>
+                <tr><td><code>:OS$</code></td><td>Shake</td></tr>
+                <tr><td><code>:OP$</code></td><td>Open dynamic group</td></tr>
+                <tr><td><code>:CL$</code></td><td>Close dynamic group</td></tr>
+            </tbody>
+        </table>
+        <p><strong>Optional parameters</strong> (added after comma): <code>&lt;speedMin&gt;,&lt;speedMax&gt;,&lt;easingOn&gt;,&lt;easingOff&gt;</code><br>
+        Example: <code>:OC1,10,50,1,2</code></p>
+
+        <hr>
+
+        <h2>Sequences (prefix <code>:SE</code>)</h2>
+
+        <h3>Control</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:SE00</code></td><td>Stop current sequence</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Interpolated Sequences — <strong>recommended</strong> (speed=125ms, reliable)</h3>
+        <blockquote>These sequences guide servos step-by-step from the ESP32 (125ms/step interpolation).<br>
+        This is the minimum reliable physical timing for dome panels.</blockquote>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Equivalent</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:SE22</code></td><td>SE02</td><td>Wave</td></tr>
+                <tr><td><code>:SE23</code></td><td>SE03</td><td>Smirk Wave (fast)</td></tr>
+                <tr><td><code>:SE24</code></td><td>SE04</td><td>Open/Close Wave</td></tr>
+                <tr><td><code>:SE25</code></td><td>SE05</td><td>Cantina beep (marching ants 15s)</td></tr>
+                <tr><td><code>:SE26</code></td><td>SE06</td><td>Short Circuit (spark + failure 8s)</td></tr>
+                <tr><td><code>:SE27</code></td><td>SE07</td><td>Full Cantina (dance 46s)</td></tr>
+                <tr><td><code>:SE28</code></td><td>SE08</td><td>Leia Message (45s) — identical, no panel servos</td></tr>
+                <tr><td><code>:SE29</code></td><td>SE09</td><td>Disco</td></tr>
+                <tr><td><code>:SE30</code></td><td>SE50</td><td>Scream logics only — identical, no panels</td></tr>
+                <tr><td><code>:SE31</code></td><td>SE51</td><td>Scream panels only</td></tr>
+                <tr><td><code>:SE32</code></td><td>SE52</td><td>Slow wave</td></tr>
+                <tr><td><code>:SE33</code></td><td>SE53</td><td>Smirk Wave</td></tr>
+                <tr><td><code>:SE34</code></td><td>SE54</td><td>Open Wave</td></tr>
+                <tr><td><code>:SE35</code></td><td>SE55</td><td>Marching Ants</td></tr>
+                <tr><td><code>:SE36</code></td><td>SE56</td><td>Faint (open/close long)</td></tr>
+                <tr><td><code>:SE37</code></td><td>SE57</td><td>Rhythmic</td></tr>
+                <tr><td><code>:SE38</code></td><td>SE58</td><td>One By One (panel by panel)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Original Sequences — reference (speed=0, Maestro handles movement)</h3>
+        <blockquote>Kept for reference. The Maestro controls the speed of its own servos.<br>
+        Less reliable with current configuration (Maestro speed and acceleration = 0).</blockquote>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:SE01</code></td><td>Scream (panels + logics)</td></tr>
+                <tr><td><code>:SE02</code></td><td>Wave</td></tr>
+                <tr><td><code>:SE03</code></td><td>Smirk Wave (fast)</td></tr>
+                <tr><td><code>:SE04</code></td><td>Open/Close Wave</td></tr>
+                <tr><td><code>:SE05</code></td><td>Cantina beep (marching ants 15s)</td></tr>
+                <tr><td><code>:SE06</code></td><td>Short Circuit (spark + failure 8s)</td></tr>
+                <tr><td><code>:SE07</code></td><td>Full Cantina (dance 46s)</td></tr>
+                <tr><td><code>:SE08</code></td><td>Leia Message (45s)</td></tr>
+                <tr><td><code>:SE09</code></td><td>Disco</td></tr>
+                <tr><td><code>:SE50</code></td><td>Scream logics only (no panels)</td></tr>
+                <tr><td><code>:SE51</code></td><td>Scream panels only</td></tr>
+                <tr><td><code>:SE52</code></td><td>Slow wave</td></tr>
+                <tr><td><code>:SE53</code></td><td>Smirk Wave</td></tr>
+                <tr><td><code>:SE54</code></td><td>Open Wave</td></tr>
+                <tr><td><code>:SE55</code></td><td>Marching Ants</td></tr>
+                <tr><td><code>:SE56</code></td><td>Faint (open/close long)</td></tr>
+                <tr><td><code>:SE57</code></td><td>Rhythmic</td></tr>
+                <tr><td><code>:SE58</code></td><td>One By One (panel by panel)</td></tr>
+            </tbody>
+        </table>
+        <div class="note">
+            <strong>Note:</strong> At the end of each sequence, all panels are automatically closed via <code>moveServosTo(ALL_DOME_PANELS_MASK, 125, 0.0)</code>, then servos are disabled after 1.5s (no brownout risk).
+        </div>
+
+        <hr>
+
+        <h2>Holos (prefix <code>*</code>)</h2>
+
+        <h3>ON / OFF</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>*ON01</code></td><td>Front Holo ON</td></tr>
+                <tr><td><code>*OF01</code></td><td>Front Holo OFF</td></tr>
+                <tr><td><code>*ON02</code></td><td>Rear Holo ON</td></tr>
+                <tr><td><code>*OF02</code></td><td>Rear Holo OFF</td></tr>
+                <tr><td><code>*ON03</code></td><td>Top Holo ON</td></tr>
+                <tr><td><code>*OF03</code></td><td>Top Holo OFF</td></tr>
+                <tr><td><code>*ST00</code></td><td>Reset all holos</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Movements</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>*RD01</code></td><td>Random movement Front (one-shot)</td></tr>
+                <tr><td><code>*RD02</code></td><td>Random movement Rear (one-shot)</td></tr>
+                <tr><td><code>*RD03</code></td><td>Random movement Top (one-shot)</td></tr>
+                <tr><td><code>*HW01</code></td><td>Wag (left/right) Front</td></tr>
+                <tr><td><code>*HW02</code></td><td>Wag Rear</td></tr>
+                <tr><td><code>*HW03</code></td><td>Wag Top</td></tr>
+                <tr><td><code>*HN01</code></td><td>Nod (up/down) Front</td></tr>
+                <tr><td><code>*HN02</code></td><td>Nod Rear</td></tr>
+                <tr><td><code>*HN03</code></td><td>Nod Top</td></tr>
+            </tbody>
+        </table>
+
+        <h3>R2 Alive — All-in-one</h3>
+        <blockquote>Simultaneously activates continuous random movements AND blue↔white LEDs with smooth fade (1.5s fade in/out, 5–10s on, 3–9s off). Each holo is independent and offset.</blockquote>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>*HV01</code></td><td><strong>Start Slow</strong> — movements 8–15s + LEDs</td></tr>
+                <tr><td><code>*HV02</code></td><td><strong>Start Medium</strong> — movements 3–8s + LEDs</td></tr>
+                <tr><td><code>*HV03</code></td><td><strong>Start Fast</strong> — movements 1–4s + LEDs</td></tr>
+                <tr><td><code>*HV00</code></td><td><strong>Stop</strong> — return to center + LEDs off</td></tr>
+            </tbody>
+        </table>
+
+        <h3>HoloAlive — Continuous Movement (fine control)</h3>
+        <blockquote>Animates the 3 holos independently to random positions in a loop. Each holo has its own offset timer (organic effect). LEDs not affected.</blockquote>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>*HA01</code></td><td>Start <strong>Slow</strong> mode (8–15s between movements)</td></tr>
+                <tr><td><code>*HA02</code></td><td>Start <strong>Medium</strong> mode (3–8s between movements)</td></tr>
+                <tr><td><code>*HA03</code></td><td>Start <strong>Fast</strong> mode (1–4s between movements)</td></tr>
+                <tr><td><code>*HZ00</code></td><td><strong>Stop</strong> — all holos return to center</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Light Effects</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>*HPS301</code></td><td>Pulse Front</td></tr>
+                <tr><td><code>*HPS302</code></td><td>Pulse Rear</td></tr>
+                <tr><td><code>*HPS303</code></td><td>Pulse Top</td></tr>
+                <tr><td><code>*HPS601</code></td><td>Rainbow Front</td></tr>
+                <tr><td><code>*HPS602</code></td><td>Rainbow Rear</td></tr>
+                <tr><td><code>*HPS603</code></td><td>Rainbow Top</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Fixed Positions (xx = 01 Front / 02 Rear / 03 Top)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>*HP0xx</code></td><td>Down</td></tr>
+                <tr><td><code>*HP1xx</code></td><td>Center</td></tr>
+                <tr><td><code>*HP2xx</code></td><td>Up</td></tr>
+                <tr><td><code>*HP3xx</code></td><td>Left</td></tr>
+                <tr><td><code>*HP4xx</code></td><td>Up-left</td></tr>
+                <tr><td><code>*HP5xx</code></td><td>Down-left</td></tr>
+                <tr><td><code>*HP6xx</code></td><td>Right</td></tr>
+                <tr><td><code>*HP7xx</code></td><td>Up-right</td></tr>
+                <tr><td><code>*HP8xx</code></td><td>Down-right</td></tr>
+            </tbody>
+        </table>
+        <p>Examples: <code>*HP001</code> = Front down, <code>*HP102</code> = Rear center, <code>*HP203</code> = Top up</p>
+
+        <h3>Radar Eye</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>*HRS3</code></td><td>Pulse (color)</td></tr>
+                <tr><td><code>*HRSR</code></td><td>Pulse red</td></tr>
+                <tr><td><code>*HRS6</code></td><td>Rainbow</td></tr>
+                <tr><td><code>*HRS4</code></td><td>Color cycle</td></tr>
+                <tr><td><code>*OF04</code></td><td>Radar Eye OFF</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>Logics & PSI (prefix <code>@</code>)</h2>
+
+        <h3>Sequences (T = Logic Display, P = PSI)</h3>
+        <blockquote><code>0</code> = all | <code>1</code> = Front | <code>2</code> = Rear</blockquote>
+        <table>
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Sequence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Normal</td></tr>
+                <tr><td>2</td><td>Flash</td></tr>
+                <tr><td>3</td><td>Alarm</td></tr>
+                <tr><td>4</td><td>Failure</td></tr>
+                <tr><td>5</td><td>Scream</td></tr>
+                <tr><td>6</td><td>Leia</td></tr>
+                <tr><td>11</td><td>March</td></tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>@0T&lt;n&gt;</code></td><td>All logics: sequence n</td></tr>
+                <tr><td><code>@1T&lt;n&gt;</code></td><td>Front Logic Display: sequence n</td></tr>
+                <tr><td><code>@2T&lt;n&gt;</code></td><td>Rear Logic Display: sequence n</td></tr>
+                <tr><td><code>@0P&lt;n&gt;</code></td><td>All PSI: sequence n</td></tr>
+                <tr><td><code>@1P&lt;n&gt;</code></td><td>Front PSI: sequence n</td></tr>
+                <tr><td><code>@2P&lt;n&gt;</code></td><td>Rear PSI: sequence n</td></tr>
+            </tbody>
+        </table>
+        <p>Examples: <code>@0T1</code> = all logics normal, <code>@1T5</code> = Front scream, <code>@2P6</code> = Rear PSI Leia</p>
+
+        <h3>Holos via Marcduino</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>@6T1</code></td><td>Front Holo ON</td></tr>
+                <tr><td><code>@6D</code></td><td>Front Holo OFF</td></tr>
+                <tr><td><code>@7T1</code></td><td>Top Holo ON</td></tr>
+                <tr><td><code>@7D</code></td><td>Top Holo OFF</td></tr>
+                <tr><td><code>@8T1</code></td><td>Rear Holo ON</td></tr>
+                <tr><td><code>@8D</code></td><td>Rear Holo OFF</td></tr>
+                <tr><td><code>@HP&lt;cmd&gt;</code></td><td>Direct holo command</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>System Commands</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>~RT&lt;cmd&gt;</code></td><td>Direct Reeltwo command</td></tr>
+                <tr><td><code>@AP&lt;cmd&gt;</code></td><td>Direct MD command to AstroPixels</td></tr>
+                <tr><td><code>#APWIFI</code></td><td>Toggle WiFi ON/OFF <em>(WiFi currently disabled)</em></td></tr>
+                <tr><td><code>#APZERO</code></td><td>Clear all NVS preferences (factory reset)</td></tr>
+                <tr><td><code>#APRESTART</code></td><td>Restart ESP32</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>Prefix Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Prefix</th>
+                    <th>Destination</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:</code></td><td>Panels / Sequences / Servo</td></tr>
+                <tr><td><code>*</code></td><td>Holos (Marcduino standard)</td></tr>
+                <tr><td><code>@</code></td><td>Logics / PSI / Alternative holos</td></tr>
+                <tr><td><code>~RT</code></td><td>Reeltwo direct</td></tr>
+                <tr><td><code>@AP</code></td><td>AstroPixels direct</td></tr>
+                <tr><td><code>#AP</code></td><td>AstroPixelsPlus system commands</td></tr>
+                <tr><td><code>$</code></td><td>Music sequences (ex: <code>$815</code> Harlem Shake)</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>Pololu Maestro 24-channel Configuration</h2>
+
+        <h3>Global Settings (Serial Settings)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Serial mode</td><td>UART, fixed baud rate</td></tr>
+                <tr><td>Baud rate</td><td>115200</td></tr>
+                <tr><td>Device ID</td><td>1</td></tr>
+                <tr><td>CRC disabled</td><td>X</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Servo Speed and Acceleration</h3>
+        <p>Maestro units are: <strong>Speed</strong> in 0.25 µs / 10 ms, <strong>Acceleration</strong> in 0.25 µs / 10 ms².</p>
+        <p>Typical panel movement is ~850 µs (ex: 1350 → 2200 µs).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Speed</th>
+                    <th>Actual speed</th>
+                    <th>Time for 850 µs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>unlimited (current)</td><td>~100–200 ms physical</td></tr>
+                <tr><td>40</td><td>1 µs/ms</td><td>~850 ms</td></tr>
+                <tr><td>80</td><td>2.5 µs/ms</td><td>~420 ms</td></tr>
+                <tr><td>120</td><td>3 µs/ms</td><td>~280 ms</td></tr>
+            </tbody>
+        </table>
+        <p><strong>Recommended values to test — channels 0–12 (panels):</strong></p>
+        <ul>
+            <li><strong>Speed: 80</strong> → ~420 ms, natural and reliable</li>
+            <li><strong>Acceleration: 5</strong> → smooth ramp, avoids mechanical shocks and current spikes</li>
+        </ul>
+        <p><strong>Channels 13–18 (holo servos):</strong> leave Speed=0 (unlimited) for brisk movement.</p>
+
+        <h3>Channel Mapping</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Channel</th>
+                    <th>Servo</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>Door 4</td><td>SMALL_PANEL</td></tr>
+                <tr><td>1</td><td>Door 3</td><td>SMALL_PANEL</td></tr>
+                <tr><td>2</td><td>Door 2</td><td>SMALL_PANEL</td></tr>
+                <tr><td>3</td><td>Door 1</td><td>MEDIUM_PANEL</td></tr>
+                <tr><td>4</td><td>Door 5</td><td>MEDIUM_PANEL</td></tr>
+                <tr><td>5</td><td>Door 9</td><td>BIG_PANEL</td></tr>
+                <tr><td>6</td><td>Pie 1</td><td>PIE_PANEL</td></tr>
+                <tr><td>7</td><td>Pie 2</td><td>PIE_PANEL</td></tr>
+                <tr><td>8</td><td>Pie 3</td><td>PIE_PANEL</td></tr>
+                <tr><td>9</td><td>Pie 4</td><td>PIE_PANEL</td></tr>
+                <tr><td>10</td><td>Mini 2</td><td>MINI_PANEL</td></tr>
+                <tr><td>11</td><td>Mini PSI</td><td>MINI_PANEL</td></tr>
+                <tr><td>12</td><td>Top Center</td><td>TOP_PIE_PANEL</td></tr>
+                <tr><td>13</td><td>Front Holo H</td><td>HOLO_HSERVO</td></tr>
+                <tr><td>14</td><td>Front Holo V</td><td>HOLO_VSERVO</td></tr>
+                <tr><td>15</td><td>Top Holo H</td><td>HOLO_HSERVO</td></tr>
+                <tr><td>16</td><td>Top Holo V</td><td>HOLO_VSERVO</td></tr>
+                <tr><td>17</td><td>Rear Holo H</td><td>HOLO_HSERVO</td></tr>
+                <tr><td>18</td><td>Rear Holo V</td><td>HOLO_VSERVO</td></tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p><em>Project: AstroPixelsPlus - ESP32 + Pololu Maestro 24 channels</em></p>
+            <p><em>Serial2: GPIO 16/17, 9600 baud (Marcduino)</em></p>
+            <p><em>Serial1: GPIO 18/19, 115200 baud (Maestro servos)</em></p>
+        </div>
+    </div>
+</body>
+</html>
