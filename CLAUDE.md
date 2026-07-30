@@ -100,9 +100,13 @@ Kyber Controller — versions proposées dans le sélecteur de [index.html](inde
 
 | Version affichée | Manifeste | Binaire | État |
 | --- | --- | --- | --- |
-| V2.3.2 | `Manifest/Kyber_V232-manifest.json` | `firmware/Kyber_V232.bin` | fusionnée (défaut) |
-| V2.0.0 | `Manifest/Kyber_V200-manifest.json` | `firmware/Kyber_V200.bin` | fusionnée, en ligne, flash validé |
+| V2.3.2 | `Manifest/Kyber_V232-manifest.json` | `firmware/Kyber_V232.bin` | fusionnée, en ligne, **flash validé** (défaut) |
 | V1.2.7 | `Manifest/Kyber_V127-manifest.json` | `firmware/Kyber_V127.bin` | fusionnée, en ligne, flash validé |
+
+La V2.0.0 a été retirée du sélecteur le 29/07/2026, la V2.3.2 la remplaçant. **Son manifeste et son
+binaire sont conservés** : `firmware/Kyber_V200.bin` est la source de l'en-tête de la V2.3.2 (voir
+plus bas) et le chemin de retour arrière si un souci apparaît. Pour la remettre en ligne, il suffit
+de rajouter son `<option>` — le manifeste est toujours là.
 
 L'entrée VTEST et son manifeste ont été supprimés le 29/07/2026. Les binaires
 `Manifest/bootloader.bin`, `partitions.bin` et `firmware.bin` qu'elle utilisait sont désormais

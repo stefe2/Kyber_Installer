@@ -11,7 +11,7 @@ Voir [CLAUDE.md](../CLAUDE.md) pour le fonctionnement général du dépôt.
 
 Dans le projet PlatformIO, après compilation :
 
-```
+```text
 .pio/build/<env>/bootloader.bin
 .pio/build/<env>/partitions.bin
 .pio/build/<env>/boot_app0.bin      (parfois dans ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/)
@@ -60,7 +60,7 @@ $b = [System.IO.File]::ReadAllBytes("firmware\Kyber_V232.bin")
 
 Attendu pour une image ESP32 fusionnée :
 
-```
+```text
 0x0000 : FF FF      <- zone vide avant le bootloader
 0x1000 : E9 xx      <- en-tête du bootloader
 0x8000 : AA 50      <- magie de la table de partitions
@@ -135,6 +135,47 @@ git push
 GitHub Pages redéploie automatiquement depuis `main` en quelques minutes. Revérifier ensuite sur
 <https://stefe2.github.io/Kyber_Installer/>, en rechargeant sans cache (Ctrl+F5) : les `.bin` et
 les manifestes sont mis en cache agressivement par le navigateur.
+
+---
+
+## Diagnostic : la carte reboote en boucle après le flash
+
+Symptôme, sur la console série à 115200 :
+
+```text
+rst:0x3 (SW_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+...
+load:0x3fff0030,len:1344
+load:0x40078000,len:13964
+load:0x40080400,len:3600
+entry 0x400805f0
+          <- rien, puis ça recommence
+```
+
+La ROM charge bien le second bootloader, puis celui-ci refuse l'application et se relance. Comme
+le bootloader Arduino est compilé sans verbosité, **l'échec est totalement silencieux** : aucun
+message n'explique la cause.
+
+**Premier réflexe : reflasher.** Un flash incomplet donne exactement ce symptôme, et c'est de loin
+la cause la plus fréquente. C'est ce qui est arrivé lors de la publication de la 2.3.2 : le même
+binaire, reflashé, a démarré sans rien changer d'autre.
+
+Si le problème persiste après plusieurs essais, la panne est dans l'image, et le diagnostic se fait
+sur le fichier, sans matériel :
+
+1. **Valider l'image applicative** — parcourir les segments depuis l'offset 0x10000, vérifier
+   l'octet de checksum (XOR de toutes les données de segments, initialisé à 0xEF) et le SHA-256 de
+   32 octets ajouté en fin d'image. Une image qui passe ces deux contrôles n'est pas corrompue.
+2. **Identifier le bootloader réellement présent** — les trois longueurs `load:...,len:` du log
+   série sont celles des segments du second bootloader. Les comparer à celles du bootloader de
+   l'image dit sans ambiguïté quelle version tourne sur la puce. Repères connus :
+   la V2.0.0 et la V2.3.2 donnent `1344 / 13964 / 3600` et `entry 0x400805f0` ; la V1.2.7 (IDF 5.4.1)
+   donne `4888 / 16516 / 4 / 3476` et `entry 0x400805b4`.
+3. **Comparer les en-têtes étendus** avec une version qui fonctionne — surtout `chip_id` (0 pour
+   ESP32) et `min_chip_rev` : une application compilée pour la révision 3 boucle silencieusement sur
+   une puce plus ancienne.
+4. **Vérifier que le fichier publié est bien celui attendu** — comparer le SHA-256 du `.bin` servi
+   par GitHub Pages à celui du dépôt, pour écarter un problème de cache ou de transfert.
 
 ---
 
