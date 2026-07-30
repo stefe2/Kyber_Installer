@@ -1,0 +1,14 @@
+{
+    "name": "Kyber Controller V2.3.2",
+    "version": "2.3.2",
+    "new_install_prompt_erase": true,
+    "new_install_improv_wait_time": 0,
+    "builds": [
+      {
+        "chipFamily": "ESP32",
+        "parts": [
+          { "path": "../firmware/Kyber_V232.bin", "offset": 0 }
+        ]
+      }
+    ]
+}
