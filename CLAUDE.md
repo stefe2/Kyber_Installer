@@ -42,7 +42,9 @@ Contraintes à ne pas oublier :
 | [B2EMO/](B2EMO/) | Installateur B2EMO Edition |
 | [Huyang/](Huyang/) | Installateur Huyang Eyes |
 | [BBBip/](BBBip/) | Installateur BB-8 SoundBoard (ESP32-S3) |
-| [merge-firmware.ps1](merge-firmware.ps1), [merge_firmware.py](merge_firmware.py), [FUSION-FIRMWARE-COMMANDE.txt](FUSION-FIRMWARE-COMMANDE.txt) | Aides à la fusion des binaires PlatformIO — **voir l'avertissement plus bas** |
+| [tools/check-firmware.ps1](tools/check-firmware.ps1) | Analyse un `.bin` : fusionnée ou brute, paramètres flash, table de partitions, checksum + SHA-256, empreinte bootloader |
+| [merge-firmware.ps1](merge-firmware.ps1) | Fusion manuelle d'un build PlatformIO (paramètre `-Chip`, vérifie le résultat) |
+| [merge_firmware.py](merge_firmware.py) | Même fusion en post-build PlatformIO (voir [platformio-config-example.ini](platformio-config-example.ini)) |
 
 Chaque sous-dossier est un installateur autonome (son `index.html`, son `manifest.json`, ses
 `.bin`). Ils ne sont **pas** liés depuis la page d'accueil : on y accède par URL directe, par
@@ -58,15 +60,15 @@ Un manifeste avec `"offset": 0` exige une **image flash complète et fusionnée*
 `firmware.bin` sorti de PlatformIO. Les deux fichiers se ressemblent (même extension, taille du
 même ordre) et l'erreur ne se voit qu'au flash : la carte reboote en boucle.
 
-Vérification en 3 octets, sous PowerShell :
+**Le contrôle est outillé, ne le refais pas à la main :**
 
 ```powershell
-$b = [System.IO.File]::ReadAllBytes("firmware\Kyber_V232.bin")
-'0x0000 : {0:X2} {1:X2}' -f $b[0], $b[1]
-'0x0020 : {0:X2} {1:X2} {2:X2} {3:X2}' -f $b[32], $b[33], $b[34], $b[35]
-'0x1000 : {0:X2} {1:X2}' -f $b[4096], $b[4097]
-'0x8000 : {0:X2} {1:X2}' -f $b[32768], $b[32769]
+.\tools\check-firmware.ps1 firmware\Kyber_V232.bin
 ```
+
+Codes de sortie : `0` publiable telle quelle, `1` image corrompue, `2` intacte mais à fusionner.
+L'outil affiche aussi les paramètres flash, la table de partitions, le taux d'occupation d'`app0`
+et l'empreinte du bootloader. La signature qu'il interprète, si tu dois vérifier à la main :
 
 | Signature | Diagnostic |
 | --- | --- |
@@ -86,13 +88,17 @@ fait alors sur la présence de `AA 50` à 0x8000.
 | `boot_app0.bin` | 0xE000 | 0xE000 |
 | `firmware.bin` | 0x10000 | 0x10000 |
 
-> **Avertissement sur les scripts de fusion du dépôt.** [merge-firmware.ps1](merge-firmware.ps1),
-> [merge_firmware.py](merge_firmware.py) et [FUSION-FIRMWARE-COMMANDE.txt](FUSION-FIRMWARE-COMMANDE.txt)
-> placent tous les trois le bootloader à `0x0` avec `--chip esp32`. C'est correct pour un S3/C3
-> mais **faux pour l'ESP32 classique**, et produit une image qui ne démarre pas. Les images
-> V1.2.7 et V2.0.0 en production ont leur bootloader à 0x1000 : elles n'ont donc pas été faites
-> avec ces scripts. Ne pas s'y fier tel quel — corriger l'offset ou utiliser la commande de
-> [docs/AJOUTER-UNE-VERSION.md](docs/AJOUTER-UNE-VERSION.md).
+Les images Kyber de production sont toutes en **dio / 4MB / 80m**. Ces paramètres ne sont que trois
+octets de l'en-tête du bootloader, réécrits par les options `--flash_mode/--flash_freq/--flash_size`
+de la fusion : s'en écarter change le comportement de la puce au démarrage.
+
+> **Historique, si tu tombes sur un ancien script ailleurs.** Jusqu'au 29/07/2026, les trois aides à
+> la fusion du dépôt plaçaient le bootloader à `0x0` (correct pour un S3/C3, **faux pour l'ESP32
+> classique**) et annonçaient `--flash_freq 40m` au lieu de `80m`. Elles ont été corrigées, et
+> `FUSION-FIRMWARE-COMMANDE.txt` supprimé au profit de
+> [docs/AJOUTER-UNE-VERSION.md](docs/AJOUTER-UNE-VERSION.md), pour ne garder qu'une source de
+> vérité. Les images V1.2.7 et V2.0.0 en production n'avaient donc pas été fabriquées avec ces
+> scripts.
 
 ## Inventaire
 
@@ -103,10 +109,11 @@ Kyber Controller — versions proposées dans le sélecteur de [index.html](inde
 | V2.3.2 | `Manifest/Kyber_V232-manifest.json` | `firmware/Kyber_V232.bin` | fusionnée, en ligne, **flash validé** (défaut) |
 | V1.2.7 | `Manifest/Kyber_V127-manifest.json` | `firmware/Kyber_V127.bin` | fusionnée, en ligne, flash validé |
 
-La V2.0.0 a été retirée du sélecteur le 29/07/2026, la V2.3.2 la remplaçant. **Son manifeste et son
-binaire sont conservés** : `firmware/Kyber_V200.bin` est la source de l'en-tête de la V2.3.2 (voir
-plus bas) et le chemin de retour arrière si un souci apparaît. Pour la remettre en ligne, il suffit
-de rajouter son `<option>` — le manifeste est toujours là.
+La V2.0.0 a été dépubliée le 29/07/2026, la V2.3.2 la remplaçant : `<option>` retiré du sélecteur
+et `Manifest/Kyber_V200-manifest.json` supprimé. **`firmware/Kyber_V200.bin` est en revanche
+conservé** — c'est la source de l'en-tête de la V2.3.2 (voir plus bas) et le chemin de retour
+arrière. Pour la remettre en ligne, il faut donc recréer son manifeste (12 lignes, calquer sur celui
+de la V2.3.2 en pointant `../firmware/Kyber_V200.bin`) puis rajouter son `<option>`.
 
 L'entrée VTEST et son manifeste ont été supprimés le 29/07/2026. Les binaires
 `Manifest/bootloader.bin`, `partitions.bin` et `firmware.bin` qu'elle utilisait sont désormais
@@ -120,22 +127,25 @@ Elle hérite donc du schéma de partitions de la V2.0.0 (`app0`/`app1` de 1920 K
 128 KiB à 0x3D0000). L'application brute d'origine est sauvegardée hors dépôt dans le scratchpad
 de la session.
 
-Fichiers présents mais non publiés :
-
-- `firmware/Kyber_V125.bin` — `firmware.bin` brut, référencé par aucun manifeste.
+`firmware/` contient les deux binaires publiés (`Kyber_V232.bin`, `Kyber_V127.bin`) plus
+`Kyber_V200.bin`, gardé sans manifeste comme retour arrière : **c'est le seul `.bin` du dossier qui
+n'est volontairement pas publié, ne pas le supprimer lors d'un nettoyage.** Les anciens `.bin` non
+référencés ont été supprimés le 29/07/2026 — ils restent récupérables dans l'historique git.
 
 Autres installateurs :
 
 | Dossier | Nom du manifeste | Puce | Binaire | Particularité |
 | --- | --- | --- | --- | --- |
 | Astropixels | Astropixels Controller 0.0.1 | ESP32 | `Firmware/Astropixels.bin` | seule page avec un lien vers une doc des commandes |
-| 1PIPBOY | PipBoy_Edition | ESP32 | `PIPV2CYD.bin` | `PIPV2.bin` et `PIPV21.bin` présents mais non utilisés |
+| 1PIPBOY | PipBoy_Edition | ESP32 | `PIPV2CYD.bin` | |
 | B2EMO | Kyber_B2EMO_Edition | ESP32 | `Kyber_V03.bin` | |
 | Huyang | Huyang Eyes | ESP32 | `Huyang.bin` | |
 | BBBip | BB-8 SoundBoard | **ESP32-S3** | 4 parties dans `firmware/` | seul installateur à ne pas utiliser d'image fusionnée |
 
-Toutes ces images sont correctement fusionnées (vérifié : `AA 50` à 0x8000), sauf BBBip qui flashe
-volontairement les 4 parties séparément.
+Toutes ces images sont correctement fusionnées (vérifié avec
+[tools/check-firmware.ps1](tools/check-firmware.ps1)), sauf BBBip qui flashe volontairement les
+4 parties séparément. Chacun de ces dossiers ne garde plus qu'un seul exemplaire de son binaire, à
+sa racine, là où le manifeste le cherche.
 
 ## Conventions
 
@@ -151,16 +161,18 @@ volontairement les 4 parties séparément.
 
 Recensées, non corrigées à ce jour — à traiter avec l'accord de Stéphane, pas au passage :
 
-1. Binaires dupliqués : `B2EMO/Kyber_V03.bin` **et** `B2EMO/firmware/Kyber_V03.bin`,
-   `Huyang/Huyang.bin` **et** `Huyang/firmware/Huyang.bin`, idem `1PIPBOY/PIPV2.bin`. Les
-   manifestes pointent vers la copie à la racine du dossier ; celles dans `firmware/` sont mortes.
-2. `1PIPBOY/index copy.html` — résidu à supprimer.
-3. 1PIPBOY, B2EMO et Huyang sont trois copies de 252 lignes d'une ancienne version de l'index
-   racine : toute retouche de style doit être répétée manuellement.
+1. 1PIPBOY, B2EMO et Huyang sont trois copies de 252 lignes d'une ancienne version de l'index
+   racine : toute retouche de style doit être répétée manuellement. Le refactor vers un CSS partagé
+   coûte probablement plus cher que la duplication, sauf si ces pages redeviennent actives.
+2. Aucune page d'accueil ne liste les installateurs secondaires : Astropixels, BBBip, Huyang, B2EMO
+   et 1PIPBOY ne sont accessibles que par URL directe.
+3. [README.md](README.md) racine fait trois lignes, et les READMEs de 1PIPBOY, B2EMO et Huyang n'en
+   sont que des copies mot pour mot.
 4. `Manifest/bootloader.bin`, `partitions.bin` et `firmware.bin` : orphelins depuis la suppression
    de l'entrée VTEST, mais gardés sciemment (voir l'inventaire). Le `firmware.bin` ne pèse que
    262 KiB — ce n'est pas un build Kyber ; sa table de partitions est en revanche identique à
    celle de la V2.0.0.
-5. `esp-web-tools@9` est épinglé partout sauf dans [BBBip/index.html](BBBip/index.html) qui utilise
-   `@latest` — divergence involontaire.
-6. Aucune page d'accueil ne liste les installateurs secondaires.
+
+Corrigé le 29/07/2026 : binaires dupliqués et non référencés supprimés (~12 Mo), `index copy.html`
+supprimé, `esp-web-tools@9` désormais épinglé partout y compris dans BBBip, scripts de fusion
+corrigés et outillés.
