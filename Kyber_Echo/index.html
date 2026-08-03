@@ -3,87 +3,446 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kyber Echo Installer</title>
+  <title>Kyber Echo — Firmware Installer</title>
+  <meta name="description" content="Flash the Kyber Echo firmware onto an ESP32-S3 board straight from your browser." />
+  <meta name="color-scheme" content="dark" />
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAE9klEQVR42r3Yy29fxRXA8e+Z+/o97fhnO/7lURLMw6GpqdSq7apKH1LUlm5QF12AxKZdsOlfWIQQVOoGaKiAhJKWhITY2I5/j/uex+nC2bD8WbrM+lzNZ86ZGc25wgpj7+aeIoLEQGzQWBhdHPPXv73Ne39/l4/e/whjFXUerKJBuffpXVlljniVYIwgRpBYIDFEo4Tbf36dW7/5I5lkfHrnc+yiQRA0eARl1WFWBREJRBEkhp/evsWt1//EUoRf/PyX7O+/ghpBjEHiGEzUMUjOJlOB6z/5Eb9+6w2qPhzpkjAa8trvbtMbpCAgIkjXIEFAhfH2hF/95U10e8yhHrOg5DEn3PjZDX58cw/VAKqIdlwyUUGDMpnucPH6DyjIWVJzzBFP9AnzUcsffv9bemmKhO8DBEhQ+mtjbOoYa0SEYc4pSxYcMmP31eeZXtxGg0LXIARQob+5jsaeAYJowLmWoI5ca6JJxku7u2egcwyz6gdiDBtXpgwlZkKGtAHNFawhOKGJHTdvvoKR6NkKuiyZGOI04fLVK+yxxS5baK0wB4oIUyZUzrL3wxcZDocgpusMGfrDIfuXXuRlthEFCiUsFc0FckOztEyf2+typem5yrYaKAgbGxNe3brGgAirFlMK5ILmQGGwc0faj7mxt3d2TXQJCkG5tLPD5niNueZ450iqCEpBCpAywi2FsijZ379BmqQrg+LV7qHAznTKo7jm8fEjeiHBlwqFogbIDCqGpRbsXr/ChQvrHYOA8ZUpH88OObz/mM10TLm0xI0hTg2RRgR1tD7w3HSHa9eudQuK45jx5YsU85rjgwLfM0Q+ImojTGWQcHb0e9mAyWiLF3Z3uwWlvR5rk02y1uAWnuAV3zhCGVBRTDBoC/3tEbH0GI/G3YJGF9ZRGRAWls04JXPCt08LYhcgAmcdiUaITWjnDYOk1y1ouLFFngtZXaFFoFaLy1vEQzJOqGcVw0Gffn9INh6z1vWmHq5PWZwEqqMZzawmiQSXO4waZgcLUhcIpAxHI7I4ox+ybkGD4Q7VPDA/aQmFIzMtbWFBlaoxeB/IXcR/79xnngnmpOwWVOUVzcLhCk91UkIK6j0ueKxvwTkWdeCT9w6YJB5J225v6qOHX9CcLvFFi6tbbFkSeUVbh80dTd5QLxtcDXXuSHO6zdDi5CHN6Qk0gVC3VOpI+kNC7VGxEBRQjBhMZMgXy24zVBanFMcHhFLxVaBd1rhcoQR/WpLagPqG5fwE37S88/WH3YKcb1iePsa0EIcIXzlowbiAtTVooK4LQlXzZHbAndmXHT8/VMmLb4i9IQ4JRg22bqirGqcOax11USLO8++n98hdx6cMhEVxiK9L0hDTekNoW9Q2RAghAoKnoOI/5cPu30NgqNo5VX1MQkKPPiYIEUJCijghDvCgfsTCFd8HSLG+4tviM2Kn9KRHRgJWEQvSKM5Z7jcPODtvdA9S4Jvyc+bl10jhCEVLGhLEKqlGHOsRT+0ckXM1HauB9FnjV7uCu+X7xNQMqpisjhjrkJSIr+z/CPjvxHfal4GCCk/tE+6GfzCWjA07YtOvM+OYQ3t4bsz5MqQ8+5EAD+w97sf/YiJrDGzC3eIT2tBCOIvhHG1QvHJ+nq1cEIJ67vBPriaXWAtrfOW/POvV0HNnKF4VIyLf3U++4oPoHSZmQuWrs4pyPgzA/wGyk7Rwj2BFsAAAAABJRU5ErkJggg==" />
 
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0b0e14;
-      color: #e6e6e6;
-      text-align: center;
-      padding: 2rem;
-    }
+  /* ==========================================================
+     Tokens repris de lib/Echo_html/Echo_html.cpp (theme sombre).
+     Comme la console et le HUD, aucune couleur d'accent
+     decorative : la couleur ne sert qu'a dire un etat.
+     Theme sombre uniquement, par choix.
+     ========================================================== */
+  :root{
+    --bg:#0b0f14;
+    --surface:#0f172a;
+    --text:#e5e7eb;
+    --muted:#94a3b8;
+    --border:rgba(255,255,255,.08);
+    --accent:#cbd5e1;
+    --shadow:0 10px 24px rgba(0,0,0,.35);
+    --ok:#10b981;
+    --warn:#f59e0b;
+    --bad:#f87171;
+    --r:14px;
+    --gap:14px;
+    --pad:14px;
+    --max:1100px;
+    --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,"Liberation Mono",monospace;
+  }
 
-    h1 {
-      margin-top: 1rem;
-      font-size: 2rem;
-    }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 
-    .logo {
-      width: 180px;
-      margin: 0 auto 1rem;
-    }
+  .app{
+    max-width:var(--max);
+    margin:auto;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:var(--gap);
+  }
 
-    ol {
-      max-width: 420px;
-      margin: 1.5rem auto;
-      text-align: left;
-    }
+  /* ---------- topbar ---------- */
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    padding:12px 16px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    box-shadow:var(--shadow);
+    position:sticky;
+    top:12px;
+    z-index:20;
+  }
+  .brand{display:flex;align-items:center;gap:16px;min-width:0}
+  .brand img{width:172px;height:auto;display:block}
+  .title{font-weight:650;font-size:34px;letter-spacing:-.02em;line-height:1.1}
 
-    li {
-      margin-bottom: 0.5rem;
-    }
+  /* ---------- cartes ---------- */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    box-shadow:var(--shadow);
+    padding:var(--pad);
+  }
+  .card h2{margin:0 0 4px;font-size:15px;font-weight:650;text-wrap:balance}
+  .card .lead{margin:0 0 12px;font-size:13px;color:var(--muted)}
+  .hr{height:1px;background:var(--border);margin:12px 0}
 
-    .hint {
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
+  /* ---------- carte principale ---------- */
+  .install{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:24px;
+    align-items:center;
+    padding:22px;
+  }
+  .install h1{
+    margin:0 0 8px;
+    font-size:30px;
+    line-height:1.15;
+    font-weight:660;
+    letter-spacing:-.02em;
+    text-wrap:balance;
+  }
+  .install p{margin:0 0 18px;color:var(--muted);font-size:14px;max-width:52ch}
+  .cta-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:11px 16px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--text);
+    font:inherit;
+    font-size:14px;
+    font-weight:550;
+    cursor:pointer;
+    transition:background-color 140ms ease, border-color 140ms ease, transform 120ms ease;
+  }
+  .btn:hover{
+    border-color:color-mix(in oklab, var(--border), var(--accent) 25%);
+    background:color-mix(in oklab, var(--surface), var(--accent) 6%);
+  }
+  .btn:active{transform:scale(.985)}
+  .btn.primary{
+    background:color-mix(in oklab, var(--surface), var(--accent) 14%);
+    border-color:var(--accent);
+    padding:13px 20px;
+    font-size:15px;
+  }
+  .btn.primary:hover{background:color-mix(in oklab, var(--surface), var(--accent) 22%)}
+  .btn svg{width:17px;height:17px;flex:none}
+
+  /* ---------- badges ---------- */
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    border:1px solid var(--border);
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .badge.ok{
+    background:color-mix(in oklab, var(--surface), var(--ok) 18%);
+    color:var(--ok);
+    border-color:color-mix(in oklab, transparent, var(--ok) 30%);
+  }
+  .badge.bad{
+    background:color-mix(in oklab, var(--surface), var(--bad) 18%);
+    color:var(--bad);
+    border-color:color-mix(in oklab, transparent, var(--bad) 30%);
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+  .badge .v{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:0}
+  /* Pastille de version de la topbar : metriques doublees. Variante
+     dediee — les autres badges (etat du navigateur, slots esp-web-tools)
+     gardent leur taille, sinon ils cesseraient d'etre des annotations. */
+  .badge.version{font-size:22px;padding:8px 18px;gap:10px}
+
+  /* ---------- panneau technique ---------- */
+  .spec{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    background:color-mix(in oklab, var(--surface), var(--accent) 4%);
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .spec-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-size:13px}
+  .spec-k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+  .spec-v{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* ---------- grille avant / apres ---------- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+
+  .check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+  .check li{display:flex;gap:11px;align-items:flex-start;font-size:13.5px}
+  .check svg{width:17px;height:17px;flex:none;margin-top:2px;color:var(--muted)}
+  .check li.live svg{color:var(--ok)}
+  .check li.live-bad svg{color:var(--bad)}
+  .check .k{font-weight:550}
+  .check .d{color:var(--muted);font-size:12.5px;display:block}
+
+  /* Numerotation justifiee : c'est une vraie sequence, chaque
+     etape depend de la precedente. */
+  .steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:13px}
+  .steps li{display:grid;grid-template-columns:24px 1fr;gap:11px;align-items:start;font-size:13.5px}
+  .steps li::before{
+    counter-increment:s;
+    content:counter(s);
+    width:24px;height:24px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    display:grid;place-items:center;
+    font-size:11px;font-weight:650;
+    color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+  .steps .d{color:var(--muted);font-size:12.5px;display:block}
+
+  code{
+    font-family:var(--mono);
+    font-size:.92em;
+    background:color-mix(in oklab, var(--surface), var(--accent) 10%);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:1px 5px;
+  }
+
+  .note{
+    margin-top:12px;
+    padding:11px 13px;
+    border-radius:12px;
+    font-size:12.5px;
+    background:color-mix(in oklab, var(--surface), var(--warn) 9%);
+    border:1px solid color-mix(in oklab, var(--border), var(--warn) 35%);
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .note svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--warn)}
+
+  /* ---------- depannage ---------- */
+  details{border-top:1px solid var(--border);padding:11px 0 0}
+  details:first-of-type{border-top:0;padding-top:0}
+  summary{
+    cursor:pointer;
+    font-size:13.5px;
+    font-weight:550;
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:3px 0;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .chev{width:14px;height:14px;color:var(--muted);transition:transform 160ms ease;flex:none}
+  details[open] summary .chev{transform:rotate(90deg)}
+  details p{margin:7px 0 11px 23px;font-size:13px;color:var(--muted);max-width:68ch}
+
+  footer{
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:4px 4px 24px;font-size:12px;color:var(--muted);
+  }
+  footer a{text-decoration:none;border-bottom:1px solid var(--border)}
+  footer a:hover{border-bottom-color:var(--accent)}
+
+  @media (max-width: 860px){
+    .install{grid-template-columns:1fr;gap:18px;padding:18px}
+    .install h1{font-size:25px}
+    .cols{grid-template-columns:1fr}
+    .brand img{width:132px}
+    .title{font-size:26px}
+    .badge.version{font-size:17px;padding:6px 14px}
+    .topbar{top:8px}
+  }
   </style>
 </head>
 <body>
 
-  <!-- Kyber Echo Logo -->
-  <svg class="logo" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-    <!-- Head -->
-    <path d="M40 90 Q100 20 160 90 Z" fill="#f5f5f5"/>
-    <circle cx="100" cy="75" r="10" fill="#222"/>
-    <circle cx="135" cy="82" r="5" fill="#ff6a00"/>
-    <line x1="100" y1="90" x2="100" y2="100" stroke="#ccc" stroke-width="3"/>
+<div class="app">
 
-    <!-- Body -->
-    <circle cx="100" cy="165" r="75" fill="#f5f5f5"/>
-    <circle cx="100" cy="165" r="45" fill="none" stroke="#ff6a00" stroke-width="6"/>
-    <circle cx="100" cy="165" r="10" fill="#bbb"/>
+  <div class="topbar">
+    <div class="brand">
+      <img src="data:image/png;base64,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" alt="Kyber Controls" />
+      <div class="title">Kyber Echo</div>
+    </div>
+    <span class="badge version">Firmware <span class="v" id="v-badge">—</span></span>
+  </div>
 
-    <!-- Body details -->
-    <path d="M25 165 H175" stroke="#ddd" stroke-width="3"/>
-    <circle cx="65" cy="190" r="6" fill="#ff6a00"/>
-    <circle cx="135" cy="190" r="6" fill="#999"/>
-  </svg>
+  <div class="card install">
+    <div>
+      <h1>Install the firmware</h1>
+      <p>Flash your ESP32-S3 board straight from this page — no toolchain, no drivers to hunt down. The whole thing takes about a minute.</p>
+      <div class="cta-row">
+        <esp-web-install-button manifest="manifest.json">
+          <button class="btn primary" slot="activate">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v13"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/>
+            </svg>
+            Install Kyber Echo
+          </button>
+          <span slot="unsupported" class="badge bad"><span class="dot"></span>Browser not supported</span>
+          <span slot="not-allowed" class="badge bad"><span class="dot"></span>Needs HTTPS</span>
+        </esp-web-install-button>
+        <span class="badge" id="browser-badge"><span class="dot"></span><span id="browser-text">Checking browser…</span></span>
+      </div>
+    </div>
 
-  <h1>Kyber Echo</h1>
-  <p>ESP32-S3 Firmware Web Installer</p>
+    <div class="spec">
+      <div class="spec-row"><span class="spec-k">Target</span><span class="spec-v">ESP32-S3</span></div>
+      <div class="spec-row"><span class="spec-k">Download</span><span class="spec-v" id="v-size">—</span></div>
+      <div class="hr"></div>
+      <div class="spec-row"><span class="spec-k">Erases settings</span><span class="spec-v">Yes</span></div>
+      <div class="spec-row"><span class="spec-k">Keeps SD card</span><span class="spec-v">Yes</span></div>
+    </div>
+  </div>
 
-  <ol>
-    <li>Use <strong>Google Chrome</strong> or <strong>Microsoft Edge</strong></li>
-    <li>Connect the ESP32-S3 board via USB</li>
-    <li>Click <strong>Install</strong> below</li>
-    <li>Select the correct serial port</li>
-  </ol>
+  <div class="cols">
 
-  <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+    <div class="card">
+      <h2>Before you start</h2>
+      <p class="lead">Three things, and one of them trips up most people.</p>
+      <ul class="check">
+        <li id="li-browser">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>
+            <span class="k">A Chromium browser</span>
+            <span class="d" id="d-browser">Chrome, Edge or Opera. Safari and Firefox cannot talk to serial ports.</span>
+          </span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>
+            <span class="k">A USB-C data cable</span>
+            <span class="d">Charge-only cables power the board but carry no data, so no port ever shows up. This is the single most common failure.</span>
+          </span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>
+            <span class="k">The board, plugged in</span>
+            <span class="d">Waveshare ESP32-S3-LCD-1.47B. Connect it before clicking Install.</span>
+          </span>
+        </li>
+      </ul>
+      <div class="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+        <span>Installing erases the board's saved settings — Wi-Fi credentials, channel mapping, audio levels. Your SD card is untouched.</span>
+      </div>
+    </div>
 
-  <p class="hint">
-    If no serial port appears:<br>
-    Hold <strong>BOOT</strong>, press <strong>RESET</strong>, then release <strong>BOOT</strong>
-    to enter flashing mode.
-  </p>
+    <div class="card">
+      <h2>After installing</h2>
+      <p class="lead">The board has no network yet, so it hosts its own.</p>
+      <ol class="steps">
+        <li><span>
+          <span class="k">Let it boot</span>
+          <span class="d">The screen runs through its checks, then shows the status display.</span>
+        </span></li>
+        <li><span>
+          <span class="k">Join <code>ECHO_xxxx</code></span>
+          <span class="d">The board's own Wi-Fi network. Password <code>12345678</code>. The last four characters come from its MAC address.</span>
+        </span></li>
+        <li><span>
+          <span class="k">Open <code>192.168.4.1</code></span>
+          <span class="d">The console loads — dashboard, channels, audio, SD card, network, logs.</span>
+        </span></li>
+        <li><span>
+          <span class="k">Point it at your Wi-Fi</span>
+          <span class="d">Network page, then reboot. From then on it joins your network at startup.</span>
+        </span></li>
+      </ol>
+      <div class="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span><strong>Connect within 60 seconds.</strong> If nobody joins, the board shuts its Wi-Fi down to keep the radio quiet. Power-cycle to get it back.</span>
+      </div>
+    </div>
 
-  <script type="module"
-    src="https://unpkg.com/esp-web-tools@latest/dist/web/install-button.js?module">
-  </script>
+  </div>
+
+  <div class="card">
+    <h2>If something goes wrong</h2>
+    <p class="lead">Four failures cover almost everything.</p>
+
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>No serial port in the list</summary>
+      <p>Put the board into flashing mode by hand: hold <strong>BOOT</strong>, tap <strong>RESET</strong>, then release <strong>BOOT</strong>. Click Install again. If the list is still empty, the cable is charge-only — swap it before anything else.</p>
+    </details>
+
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>The port is there but connecting fails</summary>
+      <p>Something else already owns it. Close any serial monitor, Arduino IDE or PlatformIO session, then retry.</p>
+    </details>
+
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>The install stops partway through</summary>
+      <p>Usually the cable or a USB hub. Plug straight into the machine and try once more. A half-written flash is not fatal — the board stays in bootloader mode and you can start over.</p>
+    </details>
+
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>No <code>ECHO_xxxx</code> network afterwards</summary>
+      <p>Either the 60-second window has closed — power-cycle the board and look again — or the flash did not take. Watch the screen: if it never reaches the status display, install once more.</p>
+    </details>
+  </div>
+
+  <footer>
+    <span>Kyber Echo · ESP32-S3 firmware</span>
+    <span><a href="https://github.com/stefe2/Kyber_Echo">Source</a> · <a href="manifest.json">Manifest</a></span>
+  </footer>
+
+</div>
+
+<script type="module" src="https://unpkg.com/esp-web-tools@latest/dist/web/install-button.js?module"></script>
+
+<script>
+(function(){
+  // Detection reelle de WebSerial : le badge rapporte un etat mesure,
+  // pas une consigne generique.
+  var badge = document.getElementById('browser-badge');
+  var text  = document.getElementById('browser-text');
+  var li    = document.getElementById('li-browser');
+  var d     = document.getElementById('d-browser');
+
+  if ('serial' in navigator) {
+    badge.className = 'badge ok';
+    text.textContent = 'Browser ready';
+    li.classList.add('live');
+    d.textContent = 'This browser supports Web Serial. You are good to go.';
+  } else {
+    badge.className = 'badge bad';
+    text.textContent = 'Browser not supported';
+    li.classList.add('live-bad');
+    d.textContent = 'This browser cannot talk to serial ports. Open this page in Chrome, Edge or Opera.';
+  }
+
+  // La version vient du manifeste, jamais d'une constante ecrite ici :
+  // c'est ce qui rend visible un ecart entre le binaire publie et la
+  // version annoncee.
+  fetch('manifest.json', {cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(m){
+      if (m && m.version) document.getElementById('v-badge').textContent = m.version;
+    })
+    .catch(function(){ document.getElementById('v-badge').textContent = 'unknown'; });
+
+  // Taille reelle du binaire, relevee au lieu d'etre codee en dur.
+  fetch('firmware/firmware.bin', {method:'HEAD', cache:'no-store'})
+    .then(function(r){
+      var n = parseInt(r.headers.get('content-length'), 10);
+      if (n > 0) document.getElementById('v-size').textContent = (n/1048576).toFixed(2) + ' MB';
+    })
+    .catch(function(){});
+})();
+</script>
 
 </body>
 </html>
