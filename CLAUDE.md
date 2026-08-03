@@ -11,7 +11,7 @@ sur `main` est en ligne quelques minutes plus tard, y compris les `.bin`.
 Chaque page d'installation charge le composant `esp-web-tools` depuis unpkg :
 
 ```html
-<script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
+<script type="module" src="https://unpkg.com/esp-web-tools@latest/dist/web/install-button.js?module"></script>
 ...
 <esp-web-install-button manifest="manifest.json">
 ```
@@ -173,6 +173,18 @@ Recensées, non corrigées à ce jour — à traiter avec l'accord de Stéphane,
    262 KiB — ce n'est pas un build Kyber ; sa table de partitions est en revanche identique à
    celle de la V2.0.0.
 
+5. `esp-web-tools@latest` sur les 6 pages : elles suivent automatiquement les ruptures amont, y
+   compris une future v11. C'est un choix assumé de Stéphane (03/08/2026), pas un oubli — ne pas
+   « corriger » en réépinglant. La contrepartie est qu'une page cassée ne se verra qu'à l'usage :
+   si un utilisateur signale un flash qui échoue sans qu'on ait touché au dépôt, vérifier d'abord
+   la version publiée (`curl -s https://registry.npmjs.org/esp-web-tools | ...`, dist-tags) et les
+   notes de version.
+
 Corrigé le 29/07/2026 : binaires dupliqués et non référencés supprimés (~12 Mo), `index copy.html`
-supprimé, `esp-web-tools@9` désormais épinglé partout y compris dans BBBip, scripts de fusion
-corrigés et outillés.
+supprimé, scripts de fusion corrigés et outillés.
+
+Le 03/08/2026, les 6 pages sont passées de `esp-web-tools@9` (9.4.3) à `@latest` (10.4.0 à cette
+date), annulant l'épinglage du 29/07/2026. La v10 ne change ni le format des manifestes ni la
+balise `<esp-web-install-button>` — la seule rupture est visuelle (bouton et dialogue en Material
+3) ; les 10.1→10.4 apportent la couche de transport esptool réécrite, le reset natif et le support
+ESP32-C5.
