@@ -41,7 +41,7 @@ Contraintes à ne pas oublier :
 | [1PIPBOY/](1PIPBOY/) | Installateur Pip-Boy Edition |
 | [B2EMO/](B2EMO/) | Installateur B2EMO Edition |
 | [Huyang/](Huyang/) | Installateur Huyang Eyes |
-| [BBBip/](BBBip/) | Installateur BB-8 SoundBoard (ESP32-S3) |
+| [Kyber_Echo/](Kyber_Echo/) | Installateur Kyber Echo (ESP32-S3) — dossier `BBBip/` jusqu'au 03/08/2026 |
 | [tools/check-firmware.ps1](tools/check-firmware.ps1) | Analyse un `.bin` : fusionnée ou brute, paramètres flash, table de partitions, checksum + SHA-256, empreinte bootloader |
 | [merge-firmware.ps1](merge-firmware.ps1) | Fusion manuelle d'un build PlatformIO (paramètre `-Chip`, vérifie le résultat) |
 | [merge_firmware.py](merge_firmware.py) | Même fusion en post-build PlatformIO (voir [platformio-config-example.ini](platformio-config-example.ini)) |
@@ -140,10 +140,10 @@ Autres installateurs :
 | 1PIPBOY | PipBoy_Edition | ESP32 | `PIPV2CYD.bin` | |
 | B2EMO | Kyber_B2EMO_Edition | ESP32 | `Kyber_V03.bin` | |
 | Huyang | Huyang Eyes | ESP32 | `Huyang.bin` | |
-| BBBip | BB-8 SoundBoard | **ESP32-S3** | 4 parties dans `firmware/` | seul installateur à ne pas utiliser d'image fusionnée |
+| Kyber_Echo | Echo | **ESP32-S3** | 4 parties dans `firmware/` | seul installateur à ne pas utiliser d'image fusionnée |
 
 Toutes ces images sont correctement fusionnées (vérifié avec
-[tools/check-firmware.ps1](tools/check-firmware.ps1)), sauf BBBip qui flashe volontairement les
+[tools/check-firmware.ps1](tools/check-firmware.ps1)), sauf Kyber_Echo qui flashe volontairement les
 4 parties séparément. Chacun de ces dossiers ne garde plus qu'un seul exemplaire de son binaire, à
 sa racine, là où le manifeste le cherche.
 
@@ -164,7 +164,7 @@ Recensées, non corrigées à ce jour — à traiter avec l'accord de Stéphane,
 1. 1PIPBOY, B2EMO et Huyang sont trois copies de 252 lignes d'une ancienne version de l'index
    racine : toute retouche de style doit être répétée manuellement. Le refactor vers un CSS partagé
    coûte probablement plus cher que la duplication, sauf si ces pages redeviennent actives.
-2. Aucune page d'accueil ne liste les installateurs secondaires : Astropixels, BBBip, Huyang, B2EMO
+2. Aucune page d'accueil ne liste les installateurs secondaires : Astropixels, Kyber_Echo, Huyang, B2EMO
    et 1PIPBOY ne sont accessibles que par URL directe.
 3. [README.md](README.md) racine fait trois lignes, et les READMEs de 1PIPBOY, B2EMO et Huyang n'en
    sont que des copies mot pour mot.
