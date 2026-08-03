@@ -163,10 +163,10 @@
   }
   .badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
   .badge .v{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:0}
-  /* Pastille de version de la topbar : metriques doublees. Variante
-     dediee — les autres badges (etat du navigateur, slots esp-web-tools)
-     gardent leur taille, sinon ils cesseraient d'etre des annotations. */
-  .badge.version{font-size:22px;padding:8px 18px;gap:10px}
+  /* Pastille de version de la topbar. Variante dediee — les autres
+     badges (etat du navigateur, slots esp-web-tools) gardent leur
+     taille, sinon ils cesseraient d'etre des annotations. */
+  .badge.version{font-size:15px;padding:5px 12px;gap:7px}
 
   /* ---------- panneau technique ---------- */
   .spec{
@@ -261,7 +261,6 @@
     .cols{grid-template-columns:1fr}
     .brand img{width:132px}
     .title{font-size:26px}
-    .badge.version{font-size:17px;padding:6px 14px}
     .topbar{top:8px}
   }
   </style>
@@ -301,8 +300,8 @@
       <div class="spec-row"><span class="spec-k">Target</span><span class="spec-v">ESP32-S3</span></div>
       <div class="spec-row"><span class="spec-k">Download</span><span class="spec-v" id="v-size">—</span></div>
       <div class="hr"></div>
-      <div class="spec-row"><span class="spec-k">Erases settings</span><span class="spec-v">Yes</span></div>
-      <div class="spec-row"><span class="spec-k">Keeps SD card</span><span class="spec-v">Yes</span></div>
+      <div class="spec-row"><span class="spec-k">Settings</span><span class="spec-v">You choose</span></div>
+      <div class="spec-row"><span class="spec-k">SD card</span><span class="spec-v">Untouched</span></div>
     </div>
   </div>
 
@@ -336,7 +335,7 @@
       </ul>
       <div class="note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
-        <span>Installing erases the board's saved settings — Wi-Fi credentials, channel mapping, audio levels. Your SD card is untouched.</span>
+        <span>The installer asks whether to erase the board first. Leave the box unchecked to keep your Wi-Fi credentials, channel mapping and audio levels; tick it for a clean slate. Your SD card is untouched either way — it is a separate device the installer never writes to.</span>
       </div>
     </div>
 
