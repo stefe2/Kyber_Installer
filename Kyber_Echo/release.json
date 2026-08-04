@@ -1,0 +1,13 @@
+{
+  "version": "0.6.2",
+  "date": "2026-08-04",
+  "firmware": "firmware/firmware.bin",
+  "size": 1483008,
+  "sha256": "28e7b9b91e7140aa905a4eb679502020494a9388ae626443d915994080cb85f9",
+  "notes": [
+    "Le droïde vérifie en ligne si un firmware plus récent est publié",
+    "Installation en un clic depuis la page System, sans passer par un téléchargement manuel",
+    "Publication vers l'installateur automatisée et vérifiée",
+    "Les versions taguées produisent désormais un binaire reproductible"
+  ]
+}
