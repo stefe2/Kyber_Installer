@@ -1,15 +1,15 @@
 {
-  "version": "0.6.4",
-  "date": "2026-08-05",
+  "version": "0.6.5",
+  "date": "2026-08-06",
   "firmware": "firmware/firmware.bin",
-  "size": 1520656,
-  "sha256": "feab7db4817ac93d8a032caf50c2afd11190e55a548e6a73592c8d6a76e93679",
+  "size": 1531504,
+  "sha256": "97553b878b27697496ebface93a5650b5f614b2b4a28dcea1250587f3f6fe2f1",
   "notes": [
-    "Kyberpad support: the 45 keys of the radio's virtual keypad now trigger sounds",
-    "Three pages of 15 keys, each page with its own configurable STOP key",
-    "Jaw Servo moved to its own page, marked experimental",
-    "Channels page reorganised; a card is hidden when its RC channel is unassigned",
-    "No more light-theme flash when the web interface opens",
-    "Trial release: your feedback will shape 0.7.0"
+    "New Sounds page: Kyberpad and Audio merged into one tabbed view — Page 1/2/3 for the keypad, Effects for the RC effects, rolling and dome",
+    "Sound Min and Sound Max are now file pickers: choose a sound by its filename instead of typing a number",
+    "A range pointing at a file that is no longer on the card is flagged in red instead of failing silently",
+    "An update badge appears in the title bar when a newer firmware is published",
+    "Clear Logs actually clears, and the log view now fetches only new lines and reports the ones lost to rotation",
+    "Wording: the Kyberpad keys are called buttons everywhere in the interface"
   ]
 }
