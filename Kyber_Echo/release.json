@@ -1,12 +1,15 @@
 {
-  "version": "0.6.3",
-  "date": "2026-08-04",
+  "version": "0.6.4",
+  "date": "2026-08-05",
   "firmware": "firmware/firmware.bin",
-  "size": 1483008,
-  "sha256": "725043fb183de088af46c02c1600c267e475d999fd1410ffd87a7a07312a3a88",
+  "size": 1520656,
+  "sha256": "feab7db4817ac93d8a032caf50c2afd11190e55a548e6a73592c8d6a76e93679",
   "notes": [
-    "Première campagne de tests manuelle jouée en entier et consignée",
-    "Correction du workflow de publication, qui échouait au démarrage",
-    "Aucun changement du firmware lui-même depuis la 0.6.2"
+    "Support du Kyberpad : les 45 touches du clavier virtuel de la radio déclenchent des sons",
+    "Trois pages de 15 touches, avec une touche STOP réglable par page",
+    "Page Jaw Servo autonome, marquée expérimentale",
+    "Page Channels réorganisée ; une carte disparaît si son canal RC n'est pas attribué",
+    "Plus de flash en thème clair à l'ouverture de l'interface",
+    "Version livrée à l'essai : vos retours décideront de la 0.7.0"
   ]
 }
