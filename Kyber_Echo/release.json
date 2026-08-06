@@ -1,15 +1,13 @@
 {
-  "version": "0.6.5",
+  "version": "0.6.6",
   "date": "2026-08-06",
   "firmware": "firmware/firmware.bin",
-  "size": 1531504,
-  "sha256": "97553b878b27697496ebface93a5650b5f614b2b4a28dcea1250587f3f6fe2f1",
+  "size": 1529136,
+  "sha256": "dd1e2c09d34c159d22d1563e70b64e6311aea8f17c0d1b36fe3cffd98dbf9976",
   "notes": [
-    "New Sounds page: Kyberpad and Audio merged into one tabbed view — Page 1/2/3 for the keypad, Effects for the RC effects, rolling and dome",
-    "Sound Min and Sound Max are now file pickers: choose a sound by its filename instead of typing a number",
-    "A range pointing at a file that is no longer on the card is flagged in red instead of failing silently",
-    "An update badge appears in the title bar when a newer firmware is published",
-    "Clear Logs actually clears, and the log view now fetches only new lines and reports the ones lost to rotation",
-    "Wording: the Kyberpad keys are called buttons everywhere in the interface"
+    "The RC volume knobs now take effect while a sound is playing — turning a knob no longer waits for the next sound to start",
+    "Firmware Update is now disabled while the receiver is on, like the SD Card page already was: a 1.5 MB upload does not survive 2.4 GHz interference",
+    "The System page has moved into Dashboard — one page for the state of the board and its maintenance",
+    "The web interface now polls the board three times less often"
   ]
 }
