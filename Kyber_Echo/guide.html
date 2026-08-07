@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kyber Echo — User Guide</title>
+  <meta name="description" content="How to use the Kyber Echo console: what each page does, and what to put in every field." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAE9klEQVR42r3Yy29fxRXA8e+Z+/o97fhnO/7lURLMw6GpqdSq7apKH1LUlm5QF12AxKZdsOlfWIQQVOoGaKiAhJKWhITY2I5/j/uex+nC2bD8WbrM+lzNZ86ZGc25wgpj7+aeIoLEQGzQWBhdHPPXv73Ne39/l4/e/whjFXUerKJBuffpXVlljniVYIwgRpBYIDFEo4Tbf36dW7/5I5lkfHrnc+yiQRA0eARl1WFWBREJRBEkhp/evsWt1//EUoRf/PyX7O+/ghpBjEHiGEzUMUjOJlOB6z/5Eb9+6w2qPhzpkjAa8trvbtMbpCAgIkjXIEFAhfH2hF/95U10e8yhHrOg5DEn3PjZDX58cw/VAKqIdlwyUUGDMpnucPH6DyjIWVJzzBFP9AnzUcsffv9bemmKhO8DBEhQ+mtjbOoYa0SEYc4pSxYcMmP31eeZXtxGg0LXIARQob+5jsaeAYJowLmWoI5ca6JJxku7u2egcwyz6gdiDBtXpgwlZkKGtAHNFawhOKGJHTdvvoKR6NkKuiyZGOI04fLVK+yxxS5baK0wB4oIUyZUzrL3wxcZDocgpusMGfrDIfuXXuRlthEFCiUsFc0FckOztEyf2+typem5yrYaKAgbGxNe3brGgAirFlMK5ILmQGGwc0faj7mxt3d2TXQJCkG5tLPD5niNueZ450iqCEpBCpAywi2FsijZ379BmqQrg+LV7qHAznTKo7jm8fEjeiHBlwqFogbIDCqGpRbsXr/ChQvrHYOA8ZUpH88OObz/mM10TLm0xI0hTg2RRgR1tD7w3HSHa9eudQuK45jx5YsU85rjgwLfM0Q+ImojTGWQcHb0e9mAyWiLF3Z3uwWlvR5rk02y1uAWnuAV3zhCGVBRTDBoC/3tEbH0GI/G3YJGF9ZRGRAWls04JXPCt08LYhcgAmcdiUaITWjnDYOk1y1ouLFFngtZXaFFoFaLy1vEQzJOqGcVw0Gffn9INh6z1vWmHq5PWZwEqqMZzawmiQSXO4waZgcLUhcIpAxHI7I4ox+ybkGD4Q7VPDA/aQmFIzMtbWFBlaoxeB/IXcR/79xnngnmpOwWVOUVzcLhCk91UkIK6j0ueKxvwTkWdeCT9w6YJB5J225v6qOHX9CcLvFFi6tbbFkSeUVbh80dTd5QLxtcDXXuSHO6zdDi5CHN6Qk0gVC3VOpI+kNC7VGxEBRQjBhMZMgXy24zVBanFMcHhFLxVaBd1rhcoQR/WpLagPqG5fwE37S88/WH3YKcb1iePsa0EIcIXzlowbiAtTVooK4LQlXzZHbAndmXHT8/VMmLb4i9IQ4JRg22bqirGqcOax11USLO8++n98hdx6cMhEVxiK9L0hDTekNoW9Q2RAghAoKnoOI/5cPu30NgqNo5VX1MQkKPPiYIEUJCijghDvCgfsTCFd8HSLG+4tviM2Kn9KRHRgJWEQvSKM5Z7jcPODtvdA9S4Jvyc+bl10jhCEVLGhLEKqlGHOsRT+0ckXM1HauB9FnjV7uCu+X7xNQMqpisjhjrkJSIr+z/CPjvxHfal4GCCk/tE+6GfzCWjA07YtOvM+OYQ3t4bsz5MqQ8+5EAD+w97sf/YiJrDGzC3eIT2tBCOIvhHG1QvHJ+nq1cEIJ67vBPriaXWAtrfOW/POvV0HNnKF4VIyLf3U++4oPoHSZmQuWrs4pyPgzA/wGyk7Rwj2BFsAAAAABJRU5ErkJggg==" />
+
+  <!--
+    Guide utilisateur, en anglais comme l'interface qu'il decrit.
+    Tokens et voix repris de index.html : meme feuille, meme theme sombre.
+
+    PUBLIC VISE : quelqu'un qui a recu un droide monte. Pas de brochage, pas de
+    materiel, pas d'architecture — seulement la console, ce que fait chaque
+    page, et quoi saisir dans chaque champ. Toute phrase qui parle du dedans
+    de la carte est hors sujet ici : elle va dans README.md.
+
+    CAPTURES : produites par `python tools/shoot_guide.py`, jamais a la main.
+    Elles sont prises sur la maquette de preview_web.py — la SPA verbatim,
+    avec des donnees fabriquees. Apres toute retouche de l'interface, relancer
+    l'outil plutot que de recadrer : le cadrage est declare dans SHOTS.
+  -->
+
+  <style>
+  :root{
+    --bg:#0b0f14;
+    --surface:#0f172a;
+    --text:#e5e7eb;
+    --muted:#94a3b8;
+    --border:rgba(255,255,255,.08);
+    --accent:#cbd5e1;
+    --shadow:0 10px 24px rgba(0,0,0,.35);
+    --ok:#10b981;
+    --warn:#f59e0b;
+    --bad:#f87171;
+    /* Propre au guide : index.html n'a pas d'encadres a colorer. */
+    --info:#38bdf8;
+    --r:14px;
+    --gap:14px;
+    --pad:18px;
+    --max:1100px;
+    --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,"Liberation Mono",monospace;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+
+  /* La barre de titre est collee en haut et occupe les 94 premiers pixels : un
+     lien d'ancre y amenait le titre de section DESSOUS. scroll-margin-top dit
+     au navigateur de s'arreter avant. Meme valeur que l'ancrage du rail :
+     12 (decalage de la barre) + 82 (sa hauteur) + 14 (respiration). */
+  .card[id],.card h3[id]{scroll-margin-top:108px}
+  html{scroll-behavior:smooth}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important}
+    html{scroll-behavior:auto}
+  }
+
+  .app{
+    max-width:var(--max);
+    margin:auto;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:var(--gap);
+  }
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    padding:12px 16px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    box-shadow:var(--shadow);
+    position:sticky;
+    top:12px;
+    z-index:20;
+  }
+  .brand{display:flex;align-items:center;gap:16px;min-width:0}
+  .brand img{width:132px;height:auto;display:block;flex:none}
+  .title{font-weight:650;font-size:30px;letter-spacing:-.02em;line-height:1.1}
+  .sub{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+  .topbar a.back{
+    font-size:12.5px;color:var(--muted);text-decoration:none;
+    border:1px solid var(--border);border-radius:999px;padding:5px 12px;white-space:nowrap;
+  }
+  .topbar a.back:hover{border-color:var(--accent);color:var(--text)}
+
+  /* ---------- cartes ---------- */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    box-shadow:var(--shadow);
+    padding:var(--pad);
+  }
+  .card h2{
+    margin:0 0 4px;font-size:19px;font-weight:650;
+    letter-spacing:-.01em;text-wrap:balance;
+    display:flex;align-items:baseline;gap:10px;
+  }
+  .card h2 .n{
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    font-variant-numeric:tabular-nums;font-weight:600;flex:none;
+  }
+  .card h3{margin:22px 0 4px;font-size:14px;font-weight:650}
+  .card h3:first-of-type{margin-top:14px}
+  .card .lead{margin:0 0 14px;font-size:13.5px;color:var(--muted);max-width:74ch}
+  .card p{margin:0 0 11px;font-size:13.5px;max-width:74ch}
+  .card p.q{color:var(--muted)}
+  .hr{height:1px;background:var(--border);margin:16px 0}
+
+  /* ---------- rail de navigation ----------
+     Le guide fait 17 ecrans : le sommaire de l'en-tete n'est utile qu'avant de
+     commencer a lire. Le rail prend le relais des qu'il y a la place pour lui
+     — en dessous de 1380 px, la page reste exactement ce qu'elle etait. */
+  .shell{display:flex;flex-direction:column;gap:var(--gap)}
+  .doc{display:flex;flex-direction:column;gap:var(--gap);min-width:0}
+  .rail{display:none}
+
+  @media (min-width: 1380px){
+    .app{max-width:1340px}
+    .shell{display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;align-items:start}
+    .rail{
+      display:flex;flex-direction:column;gap:3px;
+      position:sticky;top:108px;                  /* barre de titre : 12 + 82 + 14 */
+      max-height:calc(100vh - 124px);overflow:auto;
+      padding:10px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+    }
+    .rail a{
+      display:flex;gap:9px;align-items:baseline;
+      text-decoration:none;font-size:12.5px;line-height:1.35;
+      padding:7px 9px;border-radius:9px;
+      border:1px solid transparent;color:var(--muted);
+      transition:background-color 140ms ease,color 140ms ease,border-color 140ms ease;
+    }
+    .rail a .n{
+      font-family:var(--mono);font-size:10.5px;flex:none;
+      font-variant-numeric:tabular-nums;opacity:.75;
+    }
+    .rail a:hover{color:var(--text);background:color-mix(in oklab,var(--surface),var(--accent) 7%)}
+    .rail a.active{
+      color:var(--text);font-weight:600;
+      background:color-mix(in oklab,var(--surface),var(--accent) 12%);
+      border-color:color-mix(in oklab,var(--border),var(--accent) 30%);
+    }
+  }
+
+  /* ---------- entete ---------- */
+  .hero{padding:24px}
+  .hero h1{margin:0 0 8px;font-size:30px;line-height:1.15;font-weight:660;letter-spacing:-.02em}
+  .hero p{margin:0 0 6px;color:var(--muted);font-size:14px;max-width:64ch}
+
+  /* ---------- sommaire ---------- */
+  .toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-top:16px}
+  .toc a{
+    display:flex;gap:9px;align-items:baseline;
+    text-decoration:none;font-size:13px;
+    padding:7px 10px;border-radius:10px;border:1px solid var(--border);
+    background:color-mix(in oklab, var(--surface), var(--accent) 4%);
+    transition:border-color 140ms ease, background-color 140ms ease;
+  }
+  .toc a:hover{border-color:color-mix(in oklab,var(--border),var(--accent) 30%);background:color-mix(in oklab,var(--surface),var(--accent) 9%)}
+  /* Section mise de cote : l'entree reste visible pour que la numerotation ne
+     bouge pas, mais elle ne mene nulle part. Le retour se fait en retirant
+     `hidden` sur la section et `soon` sur les deux entrees de navigation. */
+  .toc a.soon,.rail a.soon{opacity:.4;pointer-events:none}
+  .toc a .n{font-family:var(--mono);font-size:11px;color:var(--muted);flex:none;font-variant-numeric:tabular-nums}
+
+  /* ---------- listes ---------- */
+  ul.check{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:11px}
+  ul.check li{display:flex;gap:11px;align-items:flex-start;font-size:13.5px}
+  ul.check svg{width:17px;height:17px;flex:none;margin-top:3px;color:var(--muted)}
+  ul.check .k{font-weight:550}
+  ul.check .d{color:var(--muted);font-size:12.5px;display:block;max-width:70ch}
+
+  ol.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:13px}
+  ol.steps li{display:grid;grid-template-columns:24px 1fr;gap:11px;align-items:start;font-size:13.5px}
+  ol.steps li::before{
+    counter-increment:s;content:counter(s);
+    width:24px;height:24px;border-radius:50%;
+    border:1px solid var(--border);
+    display:grid;place-items:center;
+    font-size:11px;font-weight:650;color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+  ol.steps .k{font-weight:550;display:block}
+  ol.steps .d{color:var(--muted);font-size:12.5px;display:block;max-width:70ch}
+
+  /* ---------- tableaux ---------- */
+  .tw{overflow-x:auto;margin:4px 0 8px;border:1px solid var(--border);border-radius:12px}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:13px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  th{
+    font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--muted);font-weight:600;white-space:nowrap;
+    background:color-mix(in oklab,var(--surface),var(--accent) 5%);
+  }
+  td.k{font-weight:550;white-space:nowrap}
+  td.d{color:var(--muted)}
+  td.v{font-family:var(--mono);white-space:nowrap}
+
+  code{
+    font-family:var(--mono);font-size:.9em;
+    background:color-mix(in oklab, var(--surface), var(--accent) 10%);
+    border:1px solid var(--border);border-radius:6px;padding:1px 5px;
+    white-space:nowrap;
+  }
+
+  /* ---------- exemples travailles ----------
+     Un exemple chiffre repond a « qu'est-ce que je tape », ce qu'aucune
+     description de champ ne fait vraiment. */
+  .ex{
+    margin:14px 0 6px;padding:13px 15px;border-radius:12px;
+    border:1px solid var(--border);
+    background:color-mix(in oklab, var(--bg), var(--surface) 55%);
+    max-width:80ch;
+  }
+  .ex .t{
+    font-size:11px;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--muted);font-weight:650;margin-bottom:7px;
+  }
+  .ex p{margin:0 0 9px;font-size:13px}
+  .ex p:last-child{margin-bottom:0}
+  .ex dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px;align-items:baseline}
+  .ex dt{color:var(--muted);white-space:nowrap}
+  .ex dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* ---------- encarts ---------- */
+  .note,.warn{
+    margin:14px 0 4px;padding:11px 13px;border-radius:12px;font-size:12.5px;
+    display:flex;gap:10px;align-items:flex-start;max-width:80ch;
+  }
+  /* Deux couleurs, deux sens : bleu « bon a savoir », ambre « attention ».
+     Colorer un seul encadre laisserait croire qu'il dit autre chose que
+     les sept autres, alors que non — c'est la classe entiere qui change. */
+  .note{
+    background:color-mix(in oklab, var(--surface), var(--info) 9%);
+    border:1px solid color-mix(in oklab, var(--border), var(--info) 35%);
+  }
+  .note svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--info)}
+  .warn{
+    background:color-mix(in oklab, var(--surface), var(--warn) 9%);
+    border:1px solid color-mix(in oklab, var(--border), var(--warn) 35%);
+  }
+  .warn svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--warn)}
+
+  /* ---------- emplacements de captures ---------- */
+  figure.shot{margin:16px 0;display:flex;flex-direction:column;gap:8px}
+  figure.shot img{max-width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--border)}
+  /* Un gros plan doit se lire comme un detail de ce qui precede, pas comme un
+     deuxieme ecran : plus etroit et decale, la distinction se fait avant qu'on
+     ait lu la legende. Les captures pleine page gardent toute la colonne.
+     ⚠️ Cette regle vient AVANT .portrait/.band/.inset : a specificite egale
+     c'est la derniere qui gagne, et 82 % ferait exploser une image de 300 px. */
+  figure.shot.detail{padding-left:22px}
+  figure.shot.detail img{max-width:82%}
+  figure.shot img.portrait{max-width:min(300px,100%)}
+  /* Un simple bandeau de l'ecran : affiche a la moitie de sa taille reelle,
+     donc net sur les ecrans a haute densite. Ne pas rapetisser le fichier. */
+  figure.shot img.band{max-width:min(258px,100%)}
+  figure.shot img.inset{max-width:min(300px,100%)}
+  figcaption{font-size:12.5px;color:var(--muted);max-width:74ch}
+
+  /* ---------- depannage ---------- */
+  details{border-top:1px solid var(--border);padding:11px 0 0}
+  details:first-of-type{border-top:0;padding-top:0}
+  summary{
+    cursor:pointer;font-size:13.5px;font-weight:550;list-style:none;
+    display:flex;align-items:center;gap:9px;padding:3px 0;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .chev{width:14px;height:14px;color:var(--muted);transition:transform 160ms ease;flex:none}
+  details[open] summary .chev{transform:rotate(90deg)}
+  details p{margin:7px 0 11px 23px;font-size:13px;color:var(--muted);max-width:70ch}
+
+  footer{
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:4px 4px 24px;font-size:12px;color:var(--muted);
+  }
+  footer a{text-decoration:none;border-bottom:1px solid var(--border)}
+  footer a:hover{border-bottom-color:var(--accent)}
+
+  /* Deux listes identiques a 400 px d'intervalle ne servent a rien : des que
+     le rail est la, le sommaire de l'en-tete s'efface. Cette regle vient
+     APRES la definition de .toc, sinon elle perd a specificite egale. */
+  @media (min-width: 1380px){ .toc{display:none} }
+
+  @media (max-width: 860px){
+    .hero{padding:18px}
+    .hero h1{font-size:25px}
+    .title{font-size:24px}
+    .brand img{width:104px}
+    .topbar{top:8px}
+    .ex dl{grid-template-columns:1fr}
+    .ex dt{margin-top:6px}
+    /* Sur telephone la colonne est deja etroite : le retrait couterait de la
+       lisibilite pour une distinction que le format rend evidente. */
+    figure.shot.detail{padding-left:0}
+    figure.shot.detail img{max-width:100%}
+  }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="topbar">
+    <div class="brand">
+      <img src="data:image/png;base64,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" alt="Kyber Controls" />
+      <div>
+        <div class="sub">Kyber Echo</div>
+        <div class="title">User Guide</div>
+      </div>
+    </div>
+    <a class="back" href="index.html">← Installer</a>
+  </div>
+
+  <div class="shell">
+
+    <nav class="rail" aria-label="Sections">
+        <a href="#start"><span class="n">01</span><span>Before you start</span></a>
+        <a href="#reach"><span class="n">02</span><span>Opening the console</span></a>
+        <a href="#tour"><span class="n">03</span><span>The console at a glance</span></a>
+        <a href="#wifi"><span class="n">04</span><span>Joining your Wi-Fi network</span></a>
+        <a href="#files"><span class="n">05</span><span>Adding your own sounds</span></a>
+        <a href="#channels"><span class="n">06</span><span>Channels</span></a>
+        <a href="#sounds"><span class="n">07</span><span>Sounds</span></a>
+        <a href="#jaw" class="soon" aria-disabled="true"><span class="n">08</span><span>Jaw servo</span></a>
+        <a href="#hud"><span class="n">09</span><span>Reading the screen</span></a>
+        <a href="#update"><span class="n">10</span><span>Updating</span></a>
+        <a href="#config"><span class="n">11</span><span>Backup and reset</span></a>
+        <a href="#wiring" class="soon" aria-disabled="true"><span class="n">12</span><span>Wiring</span></a>
+        <a href="#trouble"><span class="n">13</span><span>Troubleshooting</span></a>
+    </nav>
+
+    <div class="doc">
+
+  <!-- ==================== INTRO ==================== -->
+  <div class="card hero">
+    <h1>Making your droid talk with Kyber Echo</h1>
+    <p><strong>Kyber Echo is the sound board inside your droid</strong> — the part that holds your sounds and decides when to play them. Your whole library lives on a memory card inside it, and it can play three things at once: the roll of the motors, the dome turning, and the sounds you trigger yourself. The lights and the jaw move along with the sound.</p>
+    <p>Your radio triggers it, and you set it up from a console the droid serves itself — no app to install, no cable, nothing to dismantle. This guide covers that console page by page, field by field.</p>
+
+    <div class="toc">
+      <a href="#start"><span class="n">01</span><span>Before you start</span></a>
+      <a href="#reach"><span class="n">02</span><span>Opening the console</span></a>
+      <a href="#tour"><span class="n">03</span><span>The console at a glance</span></a>
+      <a href="#wifi"><span class="n">04</span><span>Joining your Wi-Fi network</span></a>
+      <a href="#files"><span class="n">05</span><span>Adding your own sounds</span></a>
+      <a href="#channels"><span class="n">06</span><span>Channels</span></a>
+      <a href="#sounds"><span class="n">07</span><span>Sounds</span></a>
+      <a href="#jaw" class="soon" aria-disabled="true"><span class="n">08</span><span>Jaw servo</span></a>
+      <a href="#hud"><span class="n">09</span><span>Reading the screen</span></a>
+      <a href="#update"><span class="n">10</span><span>Updating</span></a>
+      <a href="#config"><span class="n">11</span><span>Backup and reset</span></a>
+      <a href="#wiring" class="soon" aria-disabled="true"><span class="n">12</span><span>Wiring</span></a>
+      <a href="#trouble"><span class="n">13</span><span>Troubleshooting</span></a>
+    </div>
+  </div>
+
+  <!-- ==================== 01 ==================== -->
+  <div class="card" id="start">
+    <h2><span class="n">01</span>Before you start</h2>
+    <p class="lead">You need three things. No tools are required.</p>
+
+    <ul class="check">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>
+          <span class="k">Your droid, powered up</span>
+          <span class="d">Give it a few seconds. The screen runs through its checks, then settles into its normal display, which means it is ready.</span>
+        </span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>
+          <span class="k">Your radio</span>
+          <span class="d">The heart of the whole thing. Once the droid is out and moving, the sticks and switches are what play the sounds — the console only decides which sound each control plays. Everything from section 06 onward assumes you have one.</span>
+        </span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>
+          <span class="k">A device with a web browser</span>
+          <span class="d">Anything that joins a Wi-Fi network and opens a web page: a laptop, a desktop, a tablet, a phone. Use the largest screen you have for the first setup — the mapping tables are wide, and you will be typing labels into a lot of rows. Everything is reachable from a small screen too, which is what matters at an event, but the wider tables scroll sideways on it.</span>
+        </span>
+      </li>
+    </ul>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span>Everything in this guide is done from a browser. You never need to take the droid apart, plug anything in, or handle the memory card by hand.</span>
+    </div>
+  </div>
+
+  <!-- ==================== 02 ==================== -->
+  <div class="card" id="reach">
+    <h2><span class="n">02</span>Opening the console</h2>
+    <p class="lead">A new droid has never been given the name and password of your Wi-Fi, so it cannot join it. Instead it creates a small network of its own, and that is the one you connect to the first time.</p>
+
+    <ol class="steps">
+      <li><span>
+        <span class="k">Look for a network called <code>ECHO_xxxx</code></span>
+        <span class="d">Join it as you would any other Wi-Fi network. The password is <code>12345678</code> unless you have changed it. The four characters at the end identify your droid, so it never clashes with another one nearby.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Open <code>192.168.4.1</code> in your browser</span>
+        <span class="d">Type it into the address bar exactly as written. The console loads.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Ignore the "no internet" warning</span>
+        <span class="d">The warning is accurate: this network has no internet connection. It carries the droid's console, which is all it is for.</span>
+      </span></li>
+    </ol>
+
+    <p>Once you are connected, the address shown on the droid's screen is always the current one. When in doubt, read it there.</p>
+
+    <figure class="shot detail">
+      <img class="band" src="img/hud-network.png" alt="The network band of the droid's screen, showing ECHO_D1D8 above the address 192.168.4.1." width="516" height="153" loading="lazy">
+      <figcaption>The network band of a droid that has not yet been given a network of its own: the name to join, and the address to open. Once the droid is on your own Wi-Fi, the same band shows that network and its address instead, and it is always the one to trust.</figcaption>
+    </figure>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <span><strong>You have 60 seconds.</strong> If nobody connects within that first minute, the droid switches its Wi-Fi off and stays quiet: at an event, a live Wi-Fi would compete with your radio for the airwaves. Switch the droid off and on again for a fresh minute.</span>
+    </div>
+
+  </div>
+
+  <!-- ==================== 03 ==================== -->
+  <div class="card" id="tour">
+    <h2><span class="n">03</span>The console at a glance</h2>
+    <p class="lead">Seven pages, listed down the left. You will open a couple of them often; the rest you set up once and rarely think about again.</p>
+
+    <figure class="shot">
+      <img src="img/dashboard.png" alt="The Dashboard as the console opens, with the Status, Firmware Information and update cards filled in." width="1600" height="1984" loading="lazy">
+      <figcaption>This is what you get when the console opens: the Dashboard, with the seven pages down the left. Uptime, Wi-Fi and the radio link refresh by themselves, so what you are looking at is a live view rather than a snapshot.</figcaption>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Page</th><th>What it is for</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Dashboard</td><td class="d">The droid's current state, plus updates, backups and restart.</td></tr>
+          <tr><td class="k">Channels</td><td class="d">Which control on your radio does what. Set up once, early on.</td></tr>
+          <tr><td class="k">Sounds</td><td class="d">Which sound plays when. The page you will return to most often.</td></tr>
+          <tr><td class="k">Jaw Servo</td><td class="d">If your droid has a moving jaw, how it follows the voice.</td></tr>
+          <tr><td class="k">SD Card</td><td class="d">Your sound library — add, listen, rename, remove.</td></tr>
+          <tr><td class="k">Network</td><td class="d">Wi-Fi and how to join yours — the next section.</td></tr>
+          <tr><td class="k">Logs</td><td class="d">The droid's own messages. Worth checking when something is not behaving.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="shot detail">
+      <img class="portrait" src="img/console-nav.png" alt="The console page list: Dashboard, Channels, Sounds, Jaw Servo, SD Card, Network and Logs." width="496" height="756" loading="lazy">
+      <figcaption>The seven pages, down the left of every screen. The one you are on is outlined.</figcaption>
+    </figure>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>Auto Save Feature.</strong> Change a setting and it is written a second or two later, with a short message to confirm, so there is no Save button to look for. The buttons you do find are the ones where pressing them is the action itself: connecting to Wi-Fi, backing up, restarting.</span>
+    </div>
+
+    <p>Along the top there is a light/dark switch and, only when a newer version of the droid's software has been released, a small badge. It appears on every page.</p>
+
+    <figure class="shot detail">
+      <img src="img/console-topbar.png" alt="The console title bar, showing an update badge next to the light/dark switch." width="1600" height="134" loading="lazy">
+      <figcaption>The badge only appears when there is something to install. Pressing it takes you to the Dashboard.</figcaption>
+    </figure>
+
+  </div>
+
+  <!-- ==================== 04 ==================== -->
+  <div class="card" id="wifi">
+    <h2><span class="n">04</span>Joining your Wi-Fi network</h2>
+    <p class="lead">Optional, and worth doing at home. Once the droid has joined your own network, the console is reachable from that same network — no more disconnecting from your Wi-Fi and joining the droid's every time you want it. Out of the house, at an event or anywhere your network is out of range, the droid goes back to making its own — so the console is reachable either way, and there is nothing to switch by hand.</p>
+
+    <p>Open the <strong>Network</strong> page. It is in three parts.</p>
+    <figure class="shot">
+      <img src="img/network.png" alt="The Network page, its three cards stacked, scan results listed." width="1600" height="2052" loading="lazy">
+      <figcaption>The whole page at once. The three cards below are the same three, one at a time.</figcaption>
+    </figure>
+
+    <h3>Wi-Fi Status</h3>
+    <p class="q">The current state: which network, which address, how strong the signal. Check here first whenever the console is hard to reach.</p>
+
+    <figure class="shot detail">
+      <img src="img/wifi-status.png" alt="The WiFi Status card, showing Station mode, the network Tatooine and the address 192.168.1.42." width="1600" height="585" loading="lazy">
+      <figcaption>Read left to right: how the droid is connected, to what, and at which address. The signal reading is the droid's own: how well it hears your network from where it is standing.</figcaption>
+    </figure>
+
+    <h3>Connect to Network</h3>
+    <ol class="steps">
+      <li><span>
+        <span class="k">Switch on <em>Try to Connect to WiFi</em></span>
+        <span class="d">Left off, the droid never looks for your network and always makes its own.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Press <em>Scan</em>, then tap your network in the list</span>
+        <span class="d">Tapping a result fills the name in for you. Typing it by hand is where small, hard-to-spot errors come from.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Enter the password and press <em>Connect</em></span>
+        <span class="d">Then restart the droid. From then on it joins your network on its own, and falls back to making its own if yours is not there. Its address changes with the network, and <code>192.168.4.1</code> no longer applies — always read the current one off the droid's screen before opening the console again.</span>
+      </span></li>
+    </ol>
+
+    <figure class="shot detail">
+      <img src="img/wifi-connect.png" alt="The Connect to Network card with the connection switch on and a list of scan results." width="1600" height="1297" loading="lazy">
+      <figcaption>If your network is missing from the list, the droid cannot hear it from where it is standing. Move it closer and scan again.</figcaption>
+    </figure>
+
+    <h3>Create WiFi Network</h3>
+    <p class="q">Changes the name and password of the droid's own network. Leave the name blank to keep the automatic <code>ECHO_xxxx</code>. <strong>Setting your own password here is one of the first things to do with a new droid</strong> — ahead of the sounds, ahead of the channels, and certainly before the droid goes out in public. It must be at least 8 characters. The console also accepts an empty password, which leaves the network open to anyone within range — there is no good reason to do that on a droid you take out. Either way, <strong>a change to the name or the password only takes effect once the droid is restarted</strong>: until then the network keeps the name and password it started up with.</p>
+
+    <figure class="shot detail">
+      <img src="img/wifi-ap.png" alt="The Create WiFi Network card, with fields for the network name and its password." width="1600" height="620" loading="lazy">
+      <figcaption>These two fields govern the network the droid makes for itself — the one you used to reach the console the first time.</figcaption>
+    </figure>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      <span><strong>Change the password from <code>12345678</code>.</strong> It is the same on every droid that leaves the shop, and it is printed in this guide, so anyone nearby at an event can join your droid's network and take over the console. Set a password of your own here, before the first event rather than after.</span>
+    </div>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>The droid's own network does not stay up on its own.</strong> Go a minute with nobody connected to the console and the droid switches its Wi-Fi off entirely, and leaves it off until it is restarted. That is a second line of defence behind the password: a network nobody is using is one nobody can find either. The minute starts again each time someone is connected, so it will not cut you off mid-session.</span>
+    </div>
+
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span>If the droid loses your network it does not keep trying to reconnect: repeated attempts would keep it transmitting, in the band your radio needs. Switch it off and on again when you next want the console.</span>
+    </div>
+  </div>
+
+  <!-- ==================== 05 ==================== -->
+  <div class="card" id="files">
+    <h2><span class="n">05</span>Adding your own sounds</h2>
+    <p class="lead">Do this before anything else on the Sounds page: you cannot point a button at a sound that is not there yet. Both MP3 and WAV files are accepted.</p>
+
+    <figure class="shot">
+      <img src="img/sdcard.png" alt="The SD Card page: the upload area at the top, the sound library listed below." width="1600" height="1270" loading="lazy">
+      <figcaption>The SD Card page holds your whole library. The search box filters it as you type, which matters once it runs past a hundred files.</figcaption>
+    </figure>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>Start from an empty card.</strong> If sounds are already on it — from testing, or from whoever set the droid up before you — they will get in your way later. Your buttons point at numbers, not at names, so a leftover file sitting on a number you meant to use is the one that plays. Clear the card before you add anything: on the <strong>SD Card</strong> page, tick the box in the table header to select every file, then delete. If you have the card in your hand and a reader, formatting it does the same job and leaves nothing behind at all.</span>
+    </div>
+
+    <p>Go to <strong>SD Card</strong>. Drag your files onto the upload area, or tap it to browse. Several at once is fine. MP3 files are converted as they are uploaded, so you can add whatever you have.</p>
+
+    <figure class="shot detail">
+      <img src="img/sd-upload.png" alt="The File Management card: a dashed upload area above a search box and a Refresh button." width="1600" height="529" loading="lazy">
+      <figcaption>Drop your files on the dashed area, or tap it to open a file picker. Several at a time is fine.</figcaption>
+    </figure>
+
+    <h3>Names are how sounds are identified</h3>
+    <p>Every sound is a number from <code>001</code> to <code>999</code>, and that number is what you will select later on the Sounds page. Add a name after the number if you like: the droid ignores it, and it makes the list much easier to read.</p>
+
+    <div class="ex">
+      <div class="t">Naming that works</div>
+      <dl>
+        <dt>Fine</dt><dd>001.wav</dd>
+        <dt>Better</dt><dd>001_Leia.wav</dd>
+        <dt>Also fine</dt><dd>042_Angry_Whistle.wav</dd>
+        <dt>No good</dt><dd>whistle.wav</dd>
+        <dt>No good</dt><dd>0001.wav</dd>
+      </dl>
+      <p style="margin-top:9px;color:var(--muted);font-size:12.5px">Three digits, no more and no fewer. Without a number the file is ignored outright; with four, the droid reads the first three and files it under a number you cannot reach.</p>
+    </div>
+
+    <h3>Listening before you use a file</h3>
+    <p>Each file offers two ways to hear it, and the difference matters:</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Button</th><th>What you hear</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Play on device</td><td class="d">The droid's own speaker. This is the real test: it is exactly what your audience will hear.</td></tr>
+          <tr><td class="k">Preview</td><td class="d">Your own speakers, through the browser. Useful for picking a file quickly; it tells you nothing about how it will sound on the droid.</td></tr>
+          <tr><td class="k">Rename</td><td class="d">Changes the number a sound answers to. See the warning below.</td></tr>
+          <tr><td class="k">Delete</td><td class="d">One file, or tick several and remove them together.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="shot detail">
+      <img src="img/sd-file-row.png" alt="Two rows of the file list, each ending in four action buttons." width="1600" height="287" loading="lazy">
+      <figcaption>The four buttons sit at the end of every row, in the order of the table above: play on the droid, preview here, rename, delete.</figcaption>
+    </figure>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>Renaming can silently rewire a button.</strong> Your buttons point at numbers, not at names. Rename <code>012_Beep.wav</code> to <code>031_Beep.wav</code> and every button that played 012 now plays whatever else is at 012, or nothing at all. Decide on your numbering early and keep it.</span>
+    </div>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>Switch your radio transmitter off before uploading.</strong> While the droid is hearing the radio, this page greys itself out: uploading, renaming and deleting all stop working, because file transfers and the radio link cannot share the airwaves. Switch the transmitter off and the page becomes available again on its own, with no reload. <em>Preview</em> keeps working throughout, as it never involves the droid.</span>
+    </div>
+
+    <figure class="shot detail">
+      <img src="img/rf-lock.png" alt="An amber banner reading SD Card Operations Disabled." width="1600" height="232" loading="lazy">
+      <figcaption>This banner is the page telling you why nothing responds. It clears by itself once the transmitter is off.</figcaption>
+    </figure>
+
+    <h3>If a sound does not play</h3>
+    <p><strong>Check the name before anything else.</strong> The droid reads the first three characters and nothing more, and all three must be digits. <code>001.wav</code> is right; <code>0001.wav</code> is not — that fourth digit makes the droid read it as number <code>000</code>, which is a number no button can be set to. The file sits there in the list, perfectly good, and nothing will ever play it.</p>
+
+    <p>The sound itself is rarely the problem. Whatever you upload through the console is re-encoded on the way in — MP3 or WAV, mono or stereo, quiet or loud, it arrives in the one format the droid plays. A file that was copied onto the card with a reader instead has had none of that done to it, and that is where format trouble comes from.</p>
+
+  </div>
+
+  <!-- ==================== 06 ==================== -->
+  <div class="card" id="channels">
+    <h2><span class="n">06</span>Channels — assigning your radio's controls</h2>
+    <p class="lead">Your radio sends the droid a set of numbered channels. The droid cannot tell which is which until you say so, and this is the page where you do it.</p>
+
+    <figure class="shot">
+      <img src="img/channels.png" alt="The Channels page, its cards stacked, each with a drop-down and a live bar." width="1600" height="1913" loading="lazy">
+      <figcaption>The whole page, with the radio switched on. One card per thing the droid can be told to do, each with a drop-down and a bar that moves as you move the control.</figcaption>
+    </figure>
+
+    <p>This is the page that makes the droid playable: everything after it depends on getting these drop-downs right. It takes about a minute.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Set this</th><th>To the channel that carries…</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Speed Channel</td><td class="d">Your drive stick. The rolling sound rises and falls with it.</td></tr>
+          <tr><td class="k">Dome Movement</td><td class="d">Your dome control, with its own sound doing the same.</td></tr>
+          <tr><td class="k">Effect 1 / 2 / 3 Button</td><td class="d">A switch or button you want to trigger sounds with. Each one gives you two triggers; see <a href="#sounds">Sounds</a>.</td></tr>
+          <tr><td class="k">Effects / Rolling / Dome Volume</td><td class="d">A knob or slider, one per family of sounds. Assign at least one: the console has no volume control of its own, so with all three left on <em>None</em> nothing can turn the droid down. The same channel can be given to all three, and a single knob then sets everything.</td></tr>
+          <tr><td class="k">Kyberpad</td><td class="d">Kyberpad, if you use it. Its own card sits at the foot of this page, and it needs a second channel for the page switch.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>How to set them</h3>
+    <p>Do not work this out on paper. Every card on this page shows its channel moving in real time, so the reliable method is to pick a channel, move the control, and watch.</p>
+
+    <ol class="steps">
+      <li><span><span class="k">Pick a channel from the drop-down</span></span></li>
+      <li><span><span class="k">Move that stick or flick that switch</span></span></li>
+      <li><span><span class="k">Watch the bar</span><span class="d">If the bar moves, the channel is correct. If it does not, try the next one. All of them together take under a minute.</span></span></li>
+    </ol>
+
+    <p>If <em>no</em> channel makes the bar move, stop working through them and look at the top right of the page instead. The badge there tells you whether anything is arriving from the radio at all, and while it reads red no drop-down will help.</p>
+
+    <figure class="shot detail">
+      <img src="img/channel-status.png" alt="The page heading, with a red Disconnected badge at the right." width="1600" height="98" loading="lazy">
+      <figcaption>Red means nothing is reaching the droid: switch the transmitter on and give it a second. It turns green on its own, with no reload, and every bar on the page comes alive at once.</figcaption>
+    </figure>
+
+    <div class="ex">
+      <div class="t">Worked example</div>
+      <p>Your drive stick is on channel 1, and you have a two-way switch on channel 4 you want to trigger sounds with.</p>
+      <dl>
+        <dt>Speed Channel</dt><dd>CH1</dd>
+        <dt>Effect 1 Button</dt><dd>CH4</dd>
+        <dt>Everything else</dt><dd>None</dd>
+      </dl>
+      <p style="margin-top:9px">Push the drive stick and the Speed bar sweeps. Flick the switch and the Effect 1 bar jumps to one side, then the other. That is all this page needs.</p>
+    </div>
+
+    <figure class="shot detail">
+      <img class="portrait" src="img/channel-cards.png" alt="The Speed and Effect 1 cards, bars caught mid-travel." width="572" height="1046" loading="lazy">
+      <figcaption>The two cards of that example, close up. A bar that never moves means the channel is wrong or the radio is off. Those are the only two possibilities.</figcaption>
+    </figure>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span>Leave anything you do not have set to <em>None</em>. Those cards then disappear from the Sounds page, so that page only ever shows what your droid can actually do.</span>
+    </div>
+
+    <p>A volume knob works on sounds already playing. Turn it down halfway through a line and you hear that line fade, not the next one.</p>
+
+    <figure class="shot detail">
+      <img class="portrait" src="img/channel-volume.png" alt="The Effects Volume card, with a channel drop-down and a live bar." width="572" height="522" loading="lazy">
+      <figcaption>A volume card reads its knob live, like every other card on this page. There is one per family of sounds.</figcaption>
+    </figure>
+
+    <!-- L'id survit a la fusion : le guide est publie, et #kyberpad a pu etre
+         partage du temps ou c'etait une section a part entiere. -->
+    <h3 id="kyberpad">Kyberpad — connecting it to the droid</h3>
+    <p>Optional, and worth setting up if Kyberpad is running on your radio: it takes you from six triggers to forty-five. If it is not, skip ahead — the three effect switches work very well on their own, and everything else in this guide applies just the same.</p>
+
+    <p>Kyberpad is a keypad that runs on the radio itself: fifteen keys on each of three pages, tapped on the radio's screen. The droid does not know it exists; it only sees the channel that comes out of it. The radio therefore has to be set up first, and the droid second. Deciding what each key plays comes afterwards, on the <a href="#sounds">Sounds</a> page.</p>
+
+    <p><strong>On the radio.</strong> Two things to send out, each on its own channel:</p>
+    <ol class="steps">
+      <li><span>
+        <span class="k">Send the Kyberpad output to a channel</span>
+        <span class="d">Full travel, no trim, no expo, and <strong>no slew</strong>.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Send the page switch to a second channel</span>
+        <span class="d">Same settings. Without it you only ever reach page 1.</span>
+      </span></li>
+    </ol>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>Slew is the most common cause of misfires.</strong> It slides the channel gradually from one value to the next, so a single key press passes through every key on the way and the droid plays the whole page instead of the sound you asked for. Turn it off.</span>
+    </div>
+
+    <p><strong>In the console.</strong> The Kyberpad card, at the foot of this page, needs the two channels you just set up and the number of pages you use. Everything below that line is a live readout, there to be watched rather than filled in.</p>
+
+    <figure class="shot detail">
+      <img src="img/kyberpad-card.png" alt="The Kyberpad card: two channel drop-downs, a page count, and a live readout naming the key being pressed." width="1600" height="730" loading="lazy">
+      <figcaption>A key held down on the radio, read back by the droid. The badge names the page and the key; the row of marks beneath it shows the same thing at a glance, and the bar at the bottom is the page switch.</figcaption>
+    </figure>
+
+    <p>Press a key on the radio and watch the badge. It should name the key you actually pressed, on the page you are actually on. If it does, the setup is correct and everything that follows is a matter of choosing sounds. If it does not, nothing further will work: resolve it before moving on.</p>
+
+    <p>One mistake the console catches for you is a channel used twice. If Kyberpad shares a channel with a switch, a knob, or its own page switch, an amber line appears in the card naming both, and you can fix it on the spot.</p>
+
+    <figure class="shot detail">
+      <img src="img/kyberpad-collision.png" alt="An amber line reading: Kyberpad buttons and Effect 1 both use CH4." width="1562" height="134" loading="lazy">
+      <figcaption>Two things on one channel. Kyberpad wins some presses and the switch wins others, which reads as a droid that answers roughly half the time.</figcaption>
+    </figure>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>A key already held when the droid starts listening does nothing.</strong> The droid waits until it has seen Kyberpad at rest before it accepts anything, so switching the radio on with a key pressed cannot fire a sound by itself. Let go once and it responds normally. The same applies every time the signal comes back after being lost.</span>
+    </div>
+
+    <p>There is an <em>Advanced</em> section holding the values the droid expects from each key. It already matches Kyberpad as delivered. Leave it alone unless you have deliberately changed the key values on the radio. If the values no longer match, <em>Restore Kyberpad defaults</em> returns them to the delivered settings.</p>
+
+    <figure class="shot detail">
+      <img src="img/kyberpad-advanced.png" alt="The Advanced section of the Kyberpad card, showing sixteen raw level fields, a Tolerance field and a Restore Kyberpad defaults button." width="1562" height="602" loading="lazy">
+      <figcaption>Sixteen values, one per key plus the resting position. The button at the bottom puts them all back.</figcaption>
+    </figure>
+  </div>
+
+  <!-- ==================== 07 ==================== -->
+  <div class="card" id="sounds">
+    <h2><span class="n">07</span>Sounds — deciding what plays when</h2>
+    <p class="lead">One page answers a single question, in tables. The tabs across the top are your three Kyberpad pages, plus <strong>Effects</strong> for everything driven directly from the radio.</p>
+
+    <figure class="shot">
+      <img src="img/sounds-page1.png" alt="The Sounds page, Page 1 tab, keys labelled and one marked STOP." width="1600" height="1943" loading="lazy">
+      <figcaption>The whole page, on the Page 1 tab. The tabs switch which table you are looking at; everything below them changes with the tab. Filling in the labels takes a few minutes and keeps the table readable when you come back to it later.</figcaption>
+    </figure>
+
+    <h3>Kyberpad — choosing what each key plays</h3>
+    <p><strong>How many page tabs you see is decided back on Channels.</strong> With no Kyberpad channel assigned there are none at all, and the page tells you so instead of showing an empty table. With a Kyberpad channel but no page switch, you get Page 1 on its own — which is also why the <em>Pages</em> box on Channels stays greyed out until you give it a page switch. Set both, and you get one tab per page you chose there: one, two or three.</p>
+
+    <figure class="shot detail">
+      <img class="inset" src="img/sounds-tabs.png" alt="A tab row showing only Page 1 and Effects, next to the Stop Button box." width="664" height="130" loading="lazy">
+      <figcaption>The same page as above, this time with no page switch assigned: one tab instead of three. <em>Effects</em> never goes away, even with no Kyberpad at all.</figcaption>
+    </figure>
+
+    <p>Fifteen rows, one per key, in the same order as the keys on your radio screen. Three things to fill in:</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Column</th><th>What to put in it</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Label</td><td class="d">A name for your own use — the droid ignores it completely. Give the key the same name here that it has on the radio, so the two screens read alike when you come back to them months later.</td></tr>
+          <tr><td class="k">Sound Min / Sound Max</td><td class="d">The range of sounds this key draws from. The same number in both boxes means one fixed sound, every time.</td></tr>
+          <tr><td class="k">Random</td><td class="d">Off, the key steps through its range in order. On, it shuffles, and plays every sound in the range before repeating any of them.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="shot detail">
+      <img src="img/sounds-row.png" alt="The first three rows of the Page 1 table, with the Label, Sound Min, Sound Max and Random columns." width="1600" height="465" loading="lazy">
+      <figcaption>One row per key, numbered down the left in the same order as the keys on the radio.</figcaption>
+    </figure>
+
+    <div class="ex">
+      <div class="t">Worked example</div>
+      <p>You have five whistles, uploaded as files 010 to 014, and you want key 3 to pick one at random each time.</p>
+      <dl>
+        <dt>Label</dt><dd>Whistles</dd>
+        <dt>Sound Min</dt><dd>010</dd>
+        <dt>Sound Max</dt><dd>014</dd>
+        <dt>Random</dt><dd>on</dd>
+      </dl>
+      <p style="margin-top:9px">Tap key 3 five times and you hear all five whistles, in some order, with no repeats. On the sixth it shuffles and starts over.</p>
+    </div>
+
+    <p>Next to the tabs there is a <strong>Stop Button</strong> box: the number of the key, 1 to 15, that silences all playback instead of playing a sound. Each page has its own, and <code>0</code> means that page has no stop key. The row you choose is marked <em>STOP</em> in the table.</p>
+
+    <figure class="shot detail">
+      <img class="inset" src="img/sounds-stop.png" alt="The Stop Button field next to the Effects tab, set to 15." width="508" height="130" loading="lazy">
+      <figcaption>The field sits at the end of the tab row and follows the tab you are on.</figcaption>
+    </figure>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span>There is nothing to press when you are done. The page saves a second or so after you stop typing, and confirms briefly. Switching tabs saves anything still pending first, so you cannot lose a page by leaving it.</span>
+    </div>
+
+    <h3>The Effects tab</h3>
+    <p>Everything the radio drives directly lives here, Kyberpad or not: the driving and dome sounds, and the three effect switches. Kyberpad adds to these rather than replacing them, so this tab is worth filling in either way — and if you do not use Kyberpad, it is your entire setup. Cards appear here only for the controls you assigned back on Channels.</p>
+
+    <figure class="shot">
+      <img src="img/sounds-effects.png" alt="The whole Sounds page on the Effects tab: Rolling Sound and Dome Sound cards above three effect-button cards." width="1600" height="2355" loading="lazy">
+      <figcaption>The Effects tab in full: the two driving sounds first, then one card per effect switch. A card you expected and cannot find means its control is still set to <em>None</em> on Channels.</figcaption>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Card</th><th>What you set</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Rolling Sound</td><td class="d">The sound that runs while driving, and how it behaves. The Min values apply at a standstill, the Max values at full speed.</td></tr>
+          <tr><td class="k">Dome Sound</td><td class="d">The same idea, driven by the dome instead.</td></tr>
+          <tr><td class="k">Sound Effect 1 / 2 / 3</td><td class="d">Two rows each: <em>Button 1</em> for pushing the switch one way, <em>Button 2</em> for the other. Same three columns as a Kyberpad page.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Rolling Sound and Dome Sound</strong> are the two cards with sliders. Each picks a single file and loops it for as long as its control asks, stretching it between the values you set. The four sliders are the same on both.</p>
+
+    <figure class="shot detail">
+      <img src="img/sounds-rolling.png" alt="The Rolling Sound card: a file selector, Volume Min and Max, Pitch Min and Max, and a Play button." width="1600" height="548" loading="lazy">
+      <figcaption>Rolling Sound: the noise the droid makes while driving.</figcaption>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Slider</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Volume Min</td><td class="d">How loud the sound is the instant the control leaves centre. Set it low and the droid creeps in quietly; set it high and it announces itself the moment you touch the stick.</td></tr>
+          <tr><td class="k">Volume Max</td><td class="d">How loud at full travel. Everything between the two is spread evenly across the stick, so the gap between them <em>is</em> the effect: a wide gap sounds like effort building, and the same value in both gives a sound that never changes.</td></tr>
+          <tr><td class="k">Pitch Min / Max</td><td class="d">The same idea for pitch. <code>1.0</code> is the file exactly as recorded; below it the sound drags and deepens, above it tightens and rises. The range runs from <code>0.50</code> to <code>1.50</code> — half speed to half again as fast.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><em>Play</em> sends the chosen file to the droid so you can hear it without touching the radio. The button turns into <em>Stop</em> while it runs, and pressing it again silences it.</p>
+
+    <div class="ex">
+      <div class="t">Two ways to set the same card</div>
+      <p>Narrow spans read as a real machine; wide ones read as a cartoon. Both are valid — it depends on the droid you want.</p>
+      <dl>
+        <dt>Restrained</dt><dd>Volume 30 → 80 %, Pitch 0.90 → 1.10</dd>
+        <dt>Expressive</dt><dd>Volume 10 → 100 %, Pitch 0.60 → 1.30</dd>
+      </dl>
+    </div>
+
+    <figure class="shot detail">
+      <img src="img/sounds-dome.png" alt="The Dome Sound card, with the same file selector, volume and pitch sliders." width="1600" height="548" loading="lazy">
+      <figcaption>Dome Sound: identical controls, but the droid uses them differently — see below.</figcaption>
+    </figure>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>The rolling sound follows where the stick is. The dome sound follows whether the stick is moving.</strong> Push the drive stick half way and hold it there and the rolling sound keeps running, at the volume and pitch half way earns. Do the same on the dome and the sound starts, then fades out about a third of a second later, because the droid has stopped seeing the stick move. Keep turning and it keeps going. This catches people out, so it is worth trying both once before you decide the dome file is faulty.</span>
+    </div>
+
+    <p>Two smaller differences follow from that. The dome reaches its loudest at about half travel, where the drive stick needs all of it — it was made deliberately eager, since dome moves are short. And both ignore direction: forwards and backwards, clockwise and anticlockwise all sound the same. Neither cuts off abruptly; both fade.</p>
+
+    <p><strong>The effect cards</strong> work nothing like those two. That two-row split is how three switches give you six different triggers. Resting in the middle does nothing, which is what makes a spring-loaded switch a good fit.</p>
+
+    <p>Some radios go further: a three-position toggle can be given over to two push buttons fitted into the radio's own case, one for each row of the card. The droid sees no difference — it is still one channel with three states, with the middle one meaning nothing pressed — but a button that springs back under your thumb is much closer to how you actually want to fire a sound than a lever you have to flick and remember to return.</p>
+
+    <figure class="shot detail">
+      <img src="img/sounds-effect1.png" alt="The Sound Effect 1 card, with its Button 1 and Button 2 rows." width="1600" height="512" loading="lazy">
+      <figcaption>An effect card: no sliders, one row per direction of the switch, and the same three columns as a Kyberpad page.</figcaption>
+    </figure>
+
+    <div class="ex">
+      <div class="t">Worked example</div>
+      <p>One switch, two results: flick it down for a single scream, flick it up for one of three laughs.</p>
+      <dl>
+        <dt>Button 1 — Description</dt><dd>Scream</dd>
+        <dt>Button 1 — Min / Max</dt><dd>015 / 015</dd>
+        <dt>Button 2 — Description</dt><dd>Laughs</dd>
+        <dt>Button 2 — Min / Max</dt><dd>049 / 051</dd>
+        <dt>Button 2 — Random</dt><dd>on</dd>
+      </dl>
+    </div>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span>The Sound Min and Max boxes only offer numbers you actually have files for. If one still shows a number you deleted, that is deliberate: it is telling you a button is pointing at nothing, rather than clearing itself silently and leaving you to discover it at an event.</span>
+    </div>
+
+  </div>
+
+  <!-- ==================== 08 ==================== -->
+  <!-- ⏸️ MISE DE COTE le 2026-08-07, on y revient plus tard. Le contenu
+       reste ici, intact : retirer `hidden` ci-dessous et la classe `soon`
+       sur les deux entrees de nav pointant vers #jaw suffit a la remettre. La
+       numerotation ne bouge pas, exprès — renumeroter puis defaire
+       coûterait deux passes sur treize sections. -->
+  <div class="card" id="jaw" hidden>
+    <h2><span class="n">08</span>Jaw servo <span style="font-weight:400;font-size:13px;color:var(--muted)">(experimental)</span></h2>
+    <p class="lead">If your droid has a moving jaw, this makes it open and close in time with the voice. It follows the effects and Kyberpad only: driving and dome sounds leave the jaw closed, which is the intended behaviour.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Setting</th><th>How to set it</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Min — closed</td><td class="d">Where the jaw sits at rest. Nudge it until the jaw is just closed, and no further.</td></tr>
+          <tr><td class="k">Max — open</td><td class="d">How far it opens on a loud sound. Raise it until the movement is visible across a room, then reduce it slightly.</td></tr>
+          <tr><td class="k">Threshold</td><td class="d">How loud a sound has to be to count as speech. Too low and the jaw moves when nothing is being said; too high and quiet lines are missed.</td></tr>
+          <tr><td class="k">Release</td><td class="d">How fast it closes again. Higher is smoother and more natural; lower closes abruptly.</td></tr>
+          <tr><td class="k">Enable / Reverse</td><td class="d">On or off, and which way it swings. This depends on how your jaw is built.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Every change is saved as you drag, so the practical method is to work with a sound playing on a loop: adjust, listen, look, adjust again.</p>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>Set the two angles before switching it on.</strong> Start with a small gap between them and open it up gradually. A jaw driven further than it can physically travel will buzz, overheat, and eventually break.</span>
+    </div>
+
+    <p>Set the Threshold with a real line of dialogue, never a test tone: a steady tone is the one sound that never behaves like speech.</p>
+
+    <figure class="shot detail">
+      <img src="img/jaw.png" alt="The Jaw Servo page, its three groups of controls." width="1600" height="529" loading="lazy">
+      <figcaption>The Jaw Servo page and its three groups of controls. It is marked experimental because the result depends heavily on how the jaw is built; expect to spend some time on it.</figcaption>
+    </figure>
+  </div>
+
+  <!-- ==================== 09 ==================== -->
+  <div class="card" id="hud">
+    <h2><span class="n">09</span>Reading the droid's screen</h2>
+    <p class="lead">The one thing you can read with the droid closed up and no console open. Worth learning.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>What you see</th><th>What it tells you</th></tr></thead>
+        <tbody>
+          <tr><td class="k">A name, and a counter</td><td class="d">The sound playing right now, and how far into it you are. Long names scroll.</td></tr>
+          <tr><td class="k">Level bars</td><td class="d">The sound actually leaving the speaker. Flat bars while something should be playing is a useful clue.</td></tr>
+          <tr><td class="k">Network name and address</td><td class="d">Where to point your browser. This is the address to trust.</td></tr>
+          <tr><td class="k">Card status</td><td class="d">Whether the sound library was found, and how full it is.</td></tr>
+          <tr><td class="k">Radio readout</td><td class="d">Speed and direction, plus a row of dots for the controls being watched. Blank means the radio is off or not reaching it.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The screen only repaints what has changed, so a display sitting perfectly still is normal, not frozen.</p>
+
+    <figure class="shot">
+      <img src="img/hud.png" alt="The droid's screen mid-playback, name and bars both active." class="portrait" width="516" height="960" loading="lazy">
+      <figcaption>The screen is small and dense on purpose: at arm's length you read the state, not the detail.</figcaption>
+    </figure>
+  </div>
+
+  <!-- ==================== 10 ==================== -->
+  <div class="card" id="update">
+    <h2><span class="n">10</span>Updating</h2>
+    <p class="lead">From time to time a new version of the droid's software is published. The Dashboard tells you and installs it for you.</p>
+
+    <p>When there is something new, a badge appears at the top of the console, on every page. Open the <strong>Dashboard</strong>: the <em>Online Updates</em> card names the new version, its date, its size, and lists what changed, so you can decide before you commit to anything. Your own version is on the same page, under <em>Firmware</em>.</p>
+
+    <figure class="shot detail">
+      <img src="img/update.png" alt="The update card reading 'Update available', install button showing." width="1600" height="477" loading="lazy">
+      <figcaption>The Online Updates card with a version available: what it is, when it came out, how big it is, and what changed. The same badge appears at the top of every page.</figcaption>
+    </figure>
+
+    <h3>What happens when you press install</h3>
+    <p>Press <em>Download and install</em> and the console works through four steps, naming each one as it goes. Nothing is asked of you in between.</p>
+
+    <ol class="steps">
+      <li><span>
+        <span class="k">Downloading firmware…</span>
+        <span class="d">Your browser fetches the new version from the internet — not the droid, which has no connection of its own. The percentage is the download.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Uploading…</span>
+        <span class="d">The same file goes from your browser to the droid over your local connection. The percentage restarts from zero; this is the slower half.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Flashing firmware…</span>
+        <span class="d">Shown in amber, because this is the part not to interrupt. The droid is writing the new version into itself.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Rebooting in 5s…</span>
+        <span class="d">It counts down, the droid restarts, and the page reloads itself. If it does not come back, reconnect to the droid as you did the first time — the update itself is already done.</span>
+      </span></li>
+    </ol>
+
+    <p>Everything you set up survives it: your sounds, your buttons, your labels, your Wi-Fi. An update replaces the droid's software, not its settings.</p>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>An interrupted update leaves the droid on the version it already had.</strong> The new one is only switched to once it has arrived complete and intact — so a dropped Wi-Fi connection, a closed tab or a failed download costs you the wait and nothing else. You will see a red <em>Download failed</em> or <em>Upload failed</em>, and you can simply try again. That said, do not cut the power during <em>Flashing firmware…</em>; it is the one moment worth staying still for.</span>
+    </div>
+
+    <h3>What the card can say</h3>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>It says</th><th>It means</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Up to date</td><td class="d">Nothing to do.</td></tr>
+          <tr><td class="k">Update available</td><td class="d">A newer version is available. The install button is on the same card.</td></tr>
+          <tr><td class="k">Offline</td><td class="d">Your browser could not reach the internet within about six seconds. Normal when you are on the droid's own network with nothing else to hand, and not a fault. <em>Check again</em> retries.</td></tr>
+          <tr><td class="k">Not published</td><td class="d">The site answered, but has nothing to offer yet. Different from <em>Offline</em>, and deliberately so: one means nothing to install, the other means you could not ask.</td></tr>
+          <tr><td class="k">Ahead of release</td><td class="d">You are running a version newer than the published one. Unusual, and nothing to fix.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>The checking is done by your browser, never by the droid.</strong> That sounds like a detail and is the reason the whole thing works away from home: with the droid making its own network and your device holding a mobile connection at the same time, the console can still find and fetch an update the droid could never reach by itself. It also explains <em>Offline</em> — it describes your device's connection, not the droid's health.</span>
+    </div>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>Switch your radio transmitter off first.</strong> The console will not let you start while the droid is hearing the radio: an update is far too large to survive the interference. Turn the transmitter off and the button becomes available.</span>
+    </div>
+
+    <h3>Installing a file by hand</h3>
+    <p>Below the automatic card there is a drop area for a <code>.bin</code> file, for the day someone sends you one directly rather than publishing it. Drop it in or tap to browse; anything that is not a <code>.bin</code> is refused on the spot, with a red mark against the name. Then press upload, and it picks up at step two of the list above — the download has already happened, by whatever means the file reached you.</p>
+
+    <figure class="shot detail">
+      <img src="img/ota-manual.png" alt="The Firmware Update card, with a dashed area for dropping a file." width="1600" height="871" loading="lazy">
+      <figcaption>The manual route, below the automatic one. The radio locks it in exactly the same way.</figcaption>
+    </figure>
+  </div>
+
+  <!-- ==================== 11 ==================== -->
+  <div class="card" id="config">
+    <h2><span class="n">11</span>Backup and reset</h2>
+    <p class="lead">Four buttons at the foot of the Dashboard, in rising order of consequence.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Button</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Save Config</td><td class="d">Downloads everything you have set up as a single file: channels, every button, every label, the jaw. It lands in your downloads folder as <code>echo-config-</code> followed by the date and time.</td></tr>
+          <tr><td class="k">Restore Config</td><td class="d">Loads one back in, then restarts the droid. Also how you copy a finished setup onto a second droid.</td></tr>
+          <tr><td class="k">Reboot Device</td><td class="d">A clean restart. Harmless, and occasionally enough to clear a problem.</td></tr>
+          <tr><td class="k">Factory Reset</td><td class="d">Clears every setting and starts over — including the way you reach the droid. Your sounds are untouched: the library stays, the buttons pointing at it do not.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="shot detail">
+      <img src="img/system-actions.png" alt="The System Actions card: Save Config, Restore Config, Reboot Device and Factory Reset." width="1600" height="503" loading="lazy">
+      <figcaption>The four buttons, at the foot of the Dashboard, in the order the table describes them.</figcaption>
+    </figure>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span>Press <em>Save Config</em> once the droid is set up the way you want it. Labelling 45 Kyberpad keys takes a long time; restoring them takes one action.</span>
+    </div>
+
+    <h3>The backup file</h3>
+    <p><strong>Its name does not matter; its contents do.</strong> Rename it, file it away, move it to another computer — it still restores. What the console checks is that the file really is an Echo configuration, and it refuses anything else outright rather than half-applying it. A file with the right name but the wrong contents is refused just the same.</p>
+
+    <p>A backup taken from an older version of the droid's software is still usable. It restores what it contains and leaves everything else as it was, so nothing is lost simply because the file predates a setting.</p>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>No password ever goes into the file.</strong> Neither the one for the network you asked the droid to join, nor the one guarding the droid's own network. They are left out deliberately, because restoring never puts them back anyway — so carrying them would have given away the password to your home network every time you sent the file to someone. You can open the file in any text editor and check.</span>
+    </div>
+
+    <p>Restoring leaves your Wi-Fi entirely alone for the same reason: the network settings in a file are read past, never applied. Someone else's backup therefore brings across their channels, their ranges and their forty-five labels without ever taking the console away from you.</p>
+
+    <p>The one thing that follows from this: after restoring onto a droid that has never been on your network, you still have to give it your Wi-Fi by hand, on the <a href="#wifi">Network</a> page. Two fields, against the hours the rest of the file saves you.</p>
+
+    <h3>What Factory Reset costs you</h3>
+    <p>It does what it says, and that includes the settings you reach the droid through.</p>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>A factory reset makes the droid forget your Wi-Fi, and puts its own password back to the default.</strong> If you were reaching the console through your home network, that route is gone the moment it restarts. Expect to lose the page, and expect the password you chose for the droid's own network to be back to <code>12345678</code>.</span>
+    </div>
+
+    <p>Getting back in is the same as the very first time, and takes a minute:</p>
+
+    <ol class="steps">
+      <li><span>
+        <span class="k">Join the network called <code>ECHO_xxxx</code></span>
+        <span class="d">The password is <code>12345678</code> again. Any name you had given that network is gone too, so look for <code>ECHO_</code> followed by four characters.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Open <code>192.168.4.1</code></span>
+        <span class="d">The console loads, empty of your settings but with every sound still on the card.</span>
+      </span></li>
+      <li><span>
+        <span class="k">Restore your backup, or start again</span>
+        <span class="d">This is the moment the file from <em>Save Config</em> earns its keep. Without one, everything from section 04 onwards has to be done by hand.</span>
+      </span></li>
+    </ol>
+
+    <p>Change the droid's network password again straight afterwards. A reset quietly undoes that, and it is easy to forget you are back on the factory one.</p>
+  </div>
+
+  <!-- ==================== 12 ==================== -->
+  <!-- ⚠️ BROUILLON. Seule section du guide qui s'adresse au monteur et non a
+       quelqu'un qui a recu un droide fini : c'est une exception assumee a la
+       regle d'audience, decidee le 2026-08-07, et CLAUDE.md a ete mis a jour
+       en consequence. Le tableau ci-dessous est recopie des `build_flags` de
+       platformio.ini, qui reste la source de verite : verifier avant de
+       publier, et corriger LA-BAS d'abord. -->
+  <!-- ⏸️ MISE DE COTE le 2026-08-07, meme traitement que la section Jaw
+       servo : `hidden` ici, classe `soon` sur les deux entrees de nav qui
+       pointent vers #wiring. Le contenu reste intact, la numerotation ne
+       bouge pas. Elle etait de toute facon marquee brouillon. -->
+  <div class="card" id="wiring" hidden>
+    <h2><span class="n">12</span>Wiring</h2>
+    <p class="lead">For whoever builds or repairs the droid rather than uses one. Everything before this section assumes the board is already wired; this is the section that says how.</p>
+
+    <div class="warn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span><strong>This section is a draft.</strong> The pin numbers below are correct — they are the ones the firmware is compiled with — but the connector types, wire colours, power supply and mounting are still to be written.</span>
+    </div>
+
+    <h3>The board</h3>
+    <p>A Waveshare ESP32-S3-LCD-1.47B: a small board carrying the screen, a microSD slot and an RGB LED already, so those three need no wiring of their own. Everything in the table below is something you connect to it.</p>
+
+    <h3>What connects where</h3>
+    <p>Pin numbers are GPIO numbers, the ones printed on the board.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>What</th><th>Connects to</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Audio DAC — PCM5102</td><td class="d">BCK to <strong>7</strong>, LRCK to <strong>5</strong>, DIN to <strong>6</strong>. This is the sound output; everything the droid plays leaves through it.</td></tr>
+          <tr><td class="k">Radio receiver</td><td class="d">Its SBUS output to <strong>2</strong>. One wire: the droid only ever listens, it never answers the receiver.</td></tr>
+          <tr><td class="k">Jaw servo</td><td class="d">Signal to <strong>8</strong>. Power and ground come from elsewhere — see below.</td></tr>
+          <tr><td class="k">PSI LED</td><td class="d">Data to <strong>38</strong>.</td></tr>
+          <tr><td class="k">MOSFET</td><td class="d">Gate to <strong>4</strong>.</td></tr>
+          <tr><td class="k">microSD</td><td class="d">On board already, in 4-bit mode: <strong>14</strong> CLK, <strong>15</strong> CMD, <strong>16</strong>/<strong>18</strong>/<strong>17</strong>/<strong>21</strong> for D0 to D3. Nothing to wire, listed so nobody reuses those pins.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Still to write</h3>
+    <ul class="check">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+        <span>
+          <span class="k">Power</span>
+          <span class="d">What feeds the board, what feeds the servo, and whether they share a ground. The servo is the part that draws current in bursts, so this is the question that decides the rest.</span>
+        </span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+        <span>
+          <span class="k">The MOSFET</span>
+          <span class="d">What it actually switches on a finished droid, and whether it belongs in a user-facing document at all.</span>
+        </span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+        <span>
+          <span class="k">Connectors and colours</span>
+          <span class="d">Which plug is used for each of the five, and what the wires look like, so the table can be read with the droid open in front of you.</span>
+        </span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+        <span>
+          <span class="k">A photograph or a diagram</span>
+          <span class="d">The one thing a table cannot replace. Unlike every other image in this guide, it cannot be generated — it has to be taken.</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ==================== 13 ==================== -->
+  <div class="card" id="trouble">
+    <h2><span class="n">13</span>Troubleshooting</h2>
+    <p class="lead">In rough order of how often each one happens.</p>
+
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>No sound at all</summary>
+      <p>Go to the SD Card page and press <em>Play on device</em> on any file. If that is silent too, the problem is the sound library, not your button mapping. If it plays, the sound is fine and the button pointing at it is not: check on the Sounds page that the numbers match the files you actually have. A file you can see in the list but cannot select anywhere is almost always misnamed — three digits, no more and no fewer.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>Everything plays at about half volume</summary>
+      <p>The radio is off, and you have given one of the volume knobs a channel. With no signal to read, the droid settles at half rather than guessing — a droid started with the radio off should not shout. Switch the transmitter on and the knob takes over immediately.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>I cannot turn the droid down</summary>
+      <p>There is no volume control in the console: the only way to change the volume is a knob or slider on the radio. If all three volume channels are on <em>None</em> on the Channels page, nothing can turn it down. Assign at least one — the same channel can go in all three.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>The console will not open</summary>
+      <p>On the droid's own network, the Wi-Fi has almost certainly switched itself off: it does that after a minute with nobody connected, and stays off until the next restart. Switch the droid off and on, then connect without dawdling. On your home network, its address may have changed — read the current one off the droid's screen. It does not rejoin your network by itself after losing it.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>The radio does nothing</summary>
+      <p>Open the Channels page and look at the top right before anything else. A red <em>Disconnected</em> badge means nothing at all is arriving: check the transmitter is on and bound, and no drop-down will help until it turns green. If it is green, move a stick and watch the bars: something moving on the wrong card means your channel numbers need swapping.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>The dome sound stops while I hold the stick</summary>
+      <p>That is deliberate, and it is the one place the dome behaves differently from the driving sound. Rolling follows <em>where</em> the stick is, so holding it keeps the sound going; the dome follows <em>whether</em> the stick is moving, and fades out about a third of a second after it stops. Keep turning and the sound continues. Nothing is wrong with the file.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>A card or a tab is missing from the Sounds page</summary>
+      <p>The Sounds page only ever shows what your droid can actually do. A missing <em>Dome Sound</em> or <em>Sound Effect 2</em> card means that control is still on <em>None</em> back on Channels. Missing page tabs work the same way: no Kyberpad channel and there are none at all, a Kyberpad channel without a page switch and you get Page 1 alone.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>A Kyberpad key plays the wrong sound — or plays several</summary>
+      <p>Several in a row means slew is still switched on in your radio's mixer. Turn it off. Check the Kyberpad card too: if an amber line names two things sharing one channel, they are fighting over it and roughly half your presses will go astray. Consistently the wrong key means the values on the radio no longer match what the droid expects: press <em>Restore Kyberpad defaults</em> unless you changed them deliberately. And a key held down at the moment the radio comes on, or at the moment the signal returns, is ignored until you let go once.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>Everything is greyed out and nothing will upload</summary>
+      <p>Your radio transmitter is on. Uploading files and installing updates both stop while the droid is hearing the radio, because the two cannot share the airwaves. An amber banner at the top of the page says so. Switch the transmitter off and the page becomes available again within a second or two, with no reload.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>An update stopped part way</summary>
+      <p>Nothing is broken. The droid only switches to a new version once it has arrived complete, so an interrupted update leaves it exactly as it was, running the version it had. You will have seen a red <em>Download failed</em> or <em>Upload failed</em>; press the button again. If the download is what keeps failing, it is your device's internet connection rather than the droid — the droid never downloads anything itself.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>I reset the droid and now I cannot reach it</summary>
+      <p>A factory reset clears the Wi-Fi along with everything else. The droid has forgotten your network, its own network is called <code>ECHO_xxxx</code> again, and its password is back to <code>12345678</code>. Join that network, open <code>192.168.4.1</code>, and restore your backup. Then change that password again straight away.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>A change was not saved</summary>
+      <p>Saving is automatic but not instant: it waits a second or so after your last change, then confirms with a brief message. Closing the page or cutting the power within that gap loses the change. If no confirmation appeared at all, the console had already lost contact with the droid.</p>
+    </details>
+    <details>
+      <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>None of the above</summary>
+      <p>The Logs page keeps the droid's most recent messages. Open it, make the problem happen again, and read what appears. Most failures are reported there in plain words.</p>
+    </details>
+  </div>
+
+  <footer>
+    <span>Kyber Echo · Droid sound board</span>
+    <span><a href="index.html">Installer</a> · <a href="https://github.com/stefe2/Kyber_Echo">Source</a></span>
+  </footer>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* Le rail suit la lecture. Sans ca il ne serait qu'une seconde copie du
+   sommaire ; avec, il repond aussi a « ou j'en suis » dans 17 ecrans. */
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll(".rail a"));
+  if (!links.length) return;
+  var secs = Array.prototype.slice.call(
+    document.querySelectorAll(".card[id]:not([hidden])"));
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+  var pending = false;
+  function update() {
+    pending = false;
+    var cur = secs[0];
+    secs.forEach(function (s) {
+      if (s.getBoundingClientRect().top <= 170) cur = s;
+    });
+    // En bas de page, les dernieres sections ne peuvent plus monter jusqu'au
+    // seuil : sans ce cas, cliquer sur la 13e laissait la 12e allumee.
+    var fin = window.innerHeight + window.scrollY
+              >= document.documentElement.scrollHeight - 4;
+    if (fin) cur = secs[secs.length - 1];
+    links.forEach(function (a) { a.classList.remove("active"); });
+    if (cur && byId[cur.id]) byId[cur.id].classList.add("active");
+  }
+  function onScroll() {
+    if (!pending) { pending = true; requestAnimationFrame(update); }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
+</script>
+
+</body>
+</html>
