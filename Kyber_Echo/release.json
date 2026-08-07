@@ -1,13 +1,13 @@
 {
-  "version": "0.6.6",
-  "date": "2026-08-06",
+  "version": "0.6.7",
+  "date": "2026-08-07",
   "firmware": "firmware/firmware.bin",
-  "size": 1529136,
-  "sha256": "dd1e2c09d34c159d22d1563e70b64e6311aea8f17c0d1b36fe3cffd98dbf9976",
+  "size": 1531296,
+  "sha256": "e8fcf3143181a857778c844855d5d97b1dcf99ff002a32d63bca365c4f425b7b",
   "notes": [
-    "The RC volume knobs now take effect while a sound is playing — turning a knob no longer waits for the next sound to start",
-    "Firmware Update is now disabled while the receiver is on, like the SD Card page already was: a 1.5 MB upload does not survive 2.4 GHz interference",
-    "The System page has moved into Dashboard — one page for the state of the board and its maintenance",
-    "The web interface now polls the board three times less often"
+    "Buttons pointing at a missing sound no longer fail silently — the Sounds page warns you when a range refers to a file that is not on the card, and names the numbers",
+    "Your backup file no longer contains any Wi-Fi password, so it can be shared to set up a second droid",
+    "The board reaches its normal screen about four seconds sooner; a startup step that fails now stays on screen long enough to read",
+    "The version number in the screen header is legible again"
   ]
 }
